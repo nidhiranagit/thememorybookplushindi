@@ -1,0 +1,392 @@
+/* ===== HOME PAGE ===== */
+.home-header {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+.home-header h1 {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+.tagline {
+  margin-top: 12px;
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.chapter-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.chapter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+.card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+.card-number {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  font-weight: 600;
+}
+.chapter-card h2 {
+  font-size: 1.3rem;
+  margin: 4px 0 8px;
+}
+.chapter-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  flex: 1;
+}
+.card-cta {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.home-footer {
+  text-align: center;
+  padding: 30px 0 40px;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== CHAPTER PAGE ===== */
+.chapter-page {
+  padding: 30px 0 60px;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+.back-link:hover { text-decoration: underline; }
+
+.chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.chapter-icon { font-size: 3rem; }
+.chapter-number {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  font-weight: 600;
+}
+.chapter-header h1 {
+  font-size: 2rem;
+  margin: 4px 0 0;
+}
+
+/* Theory section */
+.theory-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow);
+}
+.theory-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+.theory-content p {
+  margin-bottom: 14px;
+}
+
+.key-points {
+  background: var(--primary-bg);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.key-points h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+.key-points ul, .key-points ol {
+  padding-left: 20px;
+}
+.key-points li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.example-box {
+  background: var(--accent-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.example-box h3 {
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.example-box p {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+/* Tool section */
+.tool-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+}
+.tool-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.tool-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tool-form label {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+.tool-form textarea,
+.tool-form input[type="text"] {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+.tool-form textarea:focus,
+.tool-form input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(108, 60, 224, 0.1);
+}
+
+.tool-form button[type="submit"] {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+.tool-form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(108, 60, 224, 0.3);
+}
+.tool-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Result box */
+.result-box {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(108,60,224,0.03), rgba(139,92,246,0.06));
+  border: 1px solid rgba(108, 60, 224, 0.15);
+  border-radius: var(--radius);
+}
+.result-box h3 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+.result-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 0;
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loading-spinner p {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Peg table */
+.peg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.peg-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--primary-bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.peg-num {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 24px;
+}
+.peg-word {
+  font-weight: 600;
+  color: var(--text-heading);
+}
+.peg-why {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+/* Phonetic table */
+.phonetic-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+.phonetic-table th {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.phonetic-table th:first-child { border-radius: 8px 0 0 0; }
+.phonetic-table th:last-child { border-radius: 0 8px 0 0; }
+.phonetic-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.digit-cell {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+.table-note {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* Place selector (Loci) */
+.place-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.place-btn {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.place-btn:hover {
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+.place-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.custom-place-input {
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .home-header h1 { font-size: 2rem; }
+  .chapter-header { flex-direction: column; text-align: center; }
+  .chapter-header h1 { font-size: 1.6rem; }
+  .theory-section, .tool-section { padding: 20px 18px; }
+  .peg-grid { grid-template-columns: repeat(2, 1fr); }
+}
