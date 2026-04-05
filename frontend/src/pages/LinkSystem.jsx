@@ -12,7 +12,7 @@ export default function LinkSystem() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const items = input.split(",").map((s) => s.trim()).filter(Boolean);
-    if (items.length < 2) return alert("कम से कम 2 items डालो, comma से अलग करो");
+    if (items.length < 2) return alert("Kam se kam 2 items daalo, comma se alag karo");
     setLoading(true);
     setResult("");
     try {
@@ -24,7 +24,7 @@ export default function LinkSystem() {
       const data = await res.json();
       setResult(data.story);
     } catch (err) {
-      setResult("Error: Backend server से connect नहीं हो पाया। Server चालू है ना?");
+      setResult("Error: Backend server se connect nahi ho paaya. Server chaalu hai na?");
     }
     setLoading(false);
   };
@@ -32,43 +32,43 @@ export default function LinkSystem() {
   const theory = (
     <>
       <p>
-        <strong>Link System</strong> सबसे basic memory technique है।
-        इसमें हम एक <em>अजीबोग़रीब mental images की chain</em> बनाते हैं
-        जो list के हर item को अगले item से connect करती है।
+        <strong>Link System</strong> sabse basic memory technique hai.
+        Ismein hum ek <em>ajeeboghareeb mental images ki chain</em> banaate hain
+        jo list ke har item ko agle item se connect karti hai.
       </p>
       <div className="key-points">
-        <h3>Key Principles (मुख्य सिद्धांत):</h3>
+        <h3>Key Principles:</h3>
         <ul>
-          <li><strong>अजीब बनाओ</strong> — जितनी strange image, उतना अच्छा याद रहेगा</li>
-          <li><strong>Action डालो</strong> — चीज़ें move करें, टकराएँ, उड़ें, नाचें</li>
-          <li><strong>बढ़ा-चढ़ा कर सोचो</strong> — Giant बनाओ, tiny बनाओ, लाखों में multiply करो</li>
-          <li><strong>जोड़ी बनाओ</strong> — Item 1 को 2 से जोड़ो, फिर 2 को 3 से, और आगे बढ़ो</li>
+          <li><strong>Ajeeb banao</strong> — Jitni strange image, utna achha yaad rahega</li>
+          <li><strong>Action daalo</strong> — Cheezein move karein, takraayein, udein, naachein</li>
+          <li><strong>Badha-chadha kar socho</strong> — Giant banao, tiny banao, laakhon mein multiply karo</li>
+          <li><strong>Jodi banao</strong> — Item 1 ko 2 se jodo, phir 2 ko 3 se, aur aage badho</li>
         </ul>
       </div>
       <div className="example-box">
-        <h3>Example (उदाहरण):</h3>
-        <p>याद करना है: <strong>दूध, बिल्ली, छाता, पियानो</strong></p>
+        <h3>Example:</h3>
+        <p>Yaad karna hai: <strong>Doodh, Billi, Chhaata, Piano</strong></p>
         <p>
-          सोचो एक giant <strong>दूध</strong> का carton एक चिल्लाती <strong>बिल्ली</strong> पर गिरता है,
-          बिल्ली <strong>छाता</strong> खोल कर बचती है, लेकिन छाता उड़ कर एक <strong>पियानो</strong> पर
-          गिरता है जो अपने आप बजने लगता है!
+          Socho ek giant <strong>Doodh</strong> ka carton ek chillaati <strong>Billi</strong> par girta hai,
+          billi <strong>Chhaata</strong> khol kar bachti hai, lekin chhaata udd kar ek <strong>Piano</strong> par
+          girta hai jo apne aap bajne lagta hai!
         </p>
       </div>
     </>
   );
 
   return (
-    <ChapterLayout number={1} title="Link System (कड़ी जोड़ो)" icon={"\u{1F517}"} theory={theory}>
+    <ChapterLayout number={1} title="Link System (Kadi Jodo)" icon={"\u{1F517}"} theory={theory}>
       <form onSubmit={handleSubmit} className="tool-form">
-        <label>वो items लिखो जो याद करने हैं (comma से अलग करो):</label>
+        <label>Wo items likho jo yaad karne hain (comma se alag karo):</label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="जैसे: दूध, बिल्ली, छाता, पियानो, रॉकेट"
+          placeholder="jaise: doodh, billi, chhaata, piano, rocket"
           rows={3}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "बन रही है..." : "Memory Story बनाओ"}
+          {loading ? "Ban rahi hai..." : "Memory Story Banao"}
         </button>
       </form>
 
@@ -76,7 +76,7 @@ export default function LinkSystem() {
 
       {result && (
         <div className="result-box">
-          <h3>आपकी Memory Story:</h3>
+          <h3>Aapki Memory Story:</h3>
           <div className="result-content" dangerouslySetInnerHTML={{
             __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
           }} />

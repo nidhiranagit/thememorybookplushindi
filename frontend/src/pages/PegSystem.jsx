@@ -5,16 +5,16 @@ import LoadingSpinner from "../components/LoadingSpinner";
 const API = "http://localhost:8001";
 
 const PEGS = [
-  { num: 1, word: "ताज", why: "त = 1" },
-  { num: 2, word: "नाग", why: "न = 2" },
-  { num: 3, word: "मोर", why: "म = 3" },
-  { num: 4, word: "रथ", why: "र = 4" },
-  { num: 5, word: "लड्डू", why: "ल = 5" },
-  { num: 6, word: "छाता", why: "छ = 6" },
-  { num: 7, word: "कमल", why: "क = 7" },
-  { num: 8, word: "फूल", why: "फ = 8" },
-  { num: 9, word: "पंखा", why: "प = 9" },
-  { num: 10, word: "तोता", why: "त=1, त=0" },
+  { num: 1, word: "Taaj", why: "T = 1" },
+  { num: 2, word: "Naag", why: "N = 2" },
+  { num: 3, word: "Mor", why: "M = 3" },
+  { num: 4, word: "Rath", why: "R = 4" },
+  { num: 5, word: "Laddu", why: "L = 5" },
+  { num: 6, word: "Chhaata", why: "Chh = 6" },
+  { num: 7, word: "Kamal", why: "K = 7" },
+  { num: 8, word: "Phool", why: "Ph = 8" },
+  { num: 9, word: "Pankha", why: "P = 9" },
+  { num: 10, word: "Tota", why: "T=1, T=0" },
 ];
 
 export default function PegSystem() {
@@ -25,7 +25,7 @@ export default function PegSystem() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const items = input.split(",").map((s) => s.trim()).filter(Boolean);
-    if (items.length < 1) return alert("कम से कम 1 item डालो");
+    if (items.length < 1) return alert("Kam se kam 1 item daalo");
     if (items.length > 10) return alert("Maximum 10 items (pegs 1-10)");
     setLoading(true);
     setResult("");
@@ -38,7 +38,7 @@ export default function PegSystem() {
       const data = await res.json();
       setResult(data.associations);
     } catch (err) {
-      setResult("Error: Backend server से connect नहीं हो पाया।");
+      setResult("Error: Backend server se connect nahi ho paaya.");
     }
     setLoading(false);
   };
@@ -46,12 +46,12 @@ export default function PegSystem() {
   const theory = (
     <>
       <p>
-        <strong>Peg System</strong> से तुम items को <em>number wise</em> याद कर सकते हो।
-        पहले, हर number के लिए एक permanent "peg" word याद करो।
-        फिर, हर peg को अपने item से एक bizarre image बना कर जोड़ो।
+        <strong>Peg System</strong> se tum items ko <em>number wise</em> yaad kar sakte ho.
+        Pehle, har number ke liye ek permanent "peg" word yaad karo.
+        Phir, har peg ko apne item se ek bizarre image bana kar jodo.
       </p>
       <div className="peg-table">
-        <h3>Hindi Peg List (हिंदी खूंटी सूची):</h3>
+        <h3>Hindi Peg List (Khunti Soochi):</h3>
         <div className="peg-grid">
           {PEGS.map((p) => (
             <div key={p.num} className="peg-item">
@@ -63,26 +63,26 @@ export default function PegSystem() {
         </div>
       </div>
       <div className="example-box">
-        <h3>Example (उदाहरण):</h3>
-        <p>Item #3 = "सेब" याद करना है:</p>
-        <p>Peg #3 = <strong>मोर</strong>। सोचो एक <strong>मोर</strong> अपनी पूँछ में
-        giant <strong>सेब</strong> लगा कर नाच रहा है और सेब चारों तरफ उड़ रहे हैं!</p>
+        <h3>Example:</h3>
+        <p>Item #3 = "Seb (Apple)" yaad karna hai:</p>
+        <p>Peg #3 = <strong>Mor (Peacock)</strong>. Socho ek <strong>Mor</strong> apni poonchh mein
+        giant <strong>Seb</strong> laga kar naach raha hai aur seb chaaron taraf udd rahe hain!</p>
       </div>
     </>
   );
 
   return (
-    <ChapterLayout number={2} title="Peg System (खूंटी विधि)" icon={"\u{1F4CC}"} theory={theory}>
+    <ChapterLayout number={2} title="Peg System (Khunti Vidhi)" icon={"\u{1F4CC}"} theory={theory}>
       <form onSubmit={handleSubmit} className="tool-form">
-        <label>10 items तक डालो (comma से अलग) — ये 1-10 positions पर peg होंगे:</label>
+        <label>10 items tak daalo (comma se alag) — ye 1-10 positions par peg honge:</label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="जैसे: सेब, साइकिल, डायनासोर, टेलीफ़ोन"
+          placeholder="jaise: seb, cycle, dinosaur, telephone"
           rows={3}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "बन रही है..." : "Peg Associations बनाओ"}
+          {loading ? "Ban rahi hai..." : "Peg Associations Banao"}
         </button>
       </form>
 
@@ -90,7 +90,7 @@ export default function PegSystem() {
 
       {result && (
         <div className="result-box">
-          <h3>आपकी Peg Associations:</h3>
+          <h3>Aapki Peg Associations:</h3>
           <div className="result-content" dangerouslySetInnerHTML={{
             __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
           }} />

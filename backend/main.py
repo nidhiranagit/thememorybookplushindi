@@ -45,125 +45,125 @@ def ask_claude(prompt: str) -> str | None:
         return None
 
 
-# --- Hinglish Fallback Data ---
+# --- Hinglish Fallback Data (Romanized Hindi) ---
 
 ACTIONS = [
-    "उड़ कर गिरता है", "से टकरा जाता है", "के ऊपर नाचने लगता है",
-    "को खा जाता है", "में बदल जाता है", "पर सवारी करने लगता है",
-    "को juggle करने लगता है", "के ऊपर चढ़ जाता है", "से प्यार कर बैठता है",
-    "से कुश्ती करने लगता है", "से bounce हो जाता है", "को निगल लेता है",
-    "पर parachute से गिरता है", "को karate chop मारता है", "पर surfing करने लगता है",
-    "में आग लग जाती है और", "को दौड़ा-दौड़ा कर पकड़ता है",
-    "सिकुड़ कर छुप जाता है", "लाखों में multiply हो जाता है",
+    "udd kar girta hai", "se takra jaata hai", "ke upar naachne lagta hai",
+    "ko kha jaata hai", "mein badal jaata hai", "par sawaari karne lagta hai",
+    "ko juggle karne lagta hai", "ke upar chadh jaata hai", "se pyaar kar baithta hai",
+    "se kushti karne lagta hai", "se bounce ho jaata hai", "ko nigal leta hai",
+    "par parachute se girta hai", "ko karate chop maarta hai", "par surfing karne lagta hai",
+    "mein aag lag jaati hai aur", "ko dauda-dauda kar pakadta hai",
+    "sikud kar chhup jaata hai", "laakhon mein multiply ho jaata hai",
 ]
 
 ADJECTIVES = [
-    "बहुत बड़ा (giant)", "नन्हा सा (tiny)", "चिल्लाता हुआ",
-    "चमकता हुआ (glowing)", "बालों वाला (furry)", "invisible",
-    "नाचता हुआ", "फटने वाला (exploding)", "इंद्रधनुषी (rainbow)",
-    "उल्टा (upside-down)", "गाता हुआ", "100 फीट लंबा", "बच्चे जितना छोटा",
+    "bahut bada (giant)", "nanha sa (tiny)", "chillaata hua",
+    "chamakta hua (glowing)", "baalon wala (furry)", "invisible",
+    "naachta hua", "phatne wala (exploding)", "indradhanushi (rainbow)",
+    "ulta (upside-down)", "gaata hua", "100 feet lamba", "bachche jitna chhota",
 ]
 
 PEGS = {
-    1: "ताज (Taj)", 2: "नाग (Naag)", 3: "मोर (Mor)", 4: "रथ (Rath)",
-    5: "लड्डू (Laddu)", 6: "छाता (Chhaata)", 7: "कमल (Kamal)",
-    8: "फूल (Phool)", 9: "पंखा (Pankha)", 10: "तोता (Tota)",
+    1: "Taaj (Crown)", 2: "Naag (Snake)", 3: "Mor (Peacock)", 4: "Rath (Chariot)",
+    5: "Laddu (Sweet)", 6: "Chhaata (Umbrella)", 7: "Kamal (Lotus)",
+    8: "Phool (Flower)", 9: "Pankha (Fan)", 10: "Tota (Parrot)",
 }
 
 PHONETIC_MAP = {
-    "0": "स/ज़", "1": "त/द", "2": "न", "3": "म",
-    "4": "र", "5": "ल", "6": "छ/श/च", "7": "क/ग",
-    "8": "फ/व", "9": "प/ब",
+    "0": "S/Z", "1": "T/D", "2": "N", "3": "M",
+    "4": "R", "5": "L", "6": "Chh/Sh/Ch", "7": "K/G",
+    "8": "Ph/V", "9": "P/B",
 }
 
 PHONETIC_WORDS = {
-    "0": ["सागर", "ज़मीन", "साँप"],
-    "1": ["ताला", "दीया", "तीर"],
-    "2": ["नदी", "नाव", "नारियल"],
-    "3": ["मोती", "माला", "मछली"],
-    "4": ["रस्सी", "राजा", "रोटी"],
-    "5": ["लड्डू", "लोटा", "लालटेन"],
-    "6": ["छाता", "शेर", "चम्मच"],
-    "7": ["कमल", "गाय", "केला"],
-    "8": ["फूल", "वीणा", "फल"],
-    "9": ["पतंग", "बिल्ली", "पंखा"],
-    "00": ["सीसा", "ज़ूज़ू"],
-    "01": ["सीता", "साड़ी"],
-    "10": ["तोता", "दासा"],
-    "11": ["ताता", "दादा"],
-    "12": ["तोना", "दीना"],
-    "13": ["तमाशा", "दम"],
-    "14": ["तार", "दूर"],
-    "15": ["तिल", "दाल"],
-    "21": ["नाद", "नट"],
-    "22": ["नाना", "नानी"],
-    "23": ["नाम", "नीम"],
-    "31": ["मित्र", "मूत"],
-    "32": ["मन", "मैना"],
-    "41": ["रात", "रोटी"],
-    "42": ["राणी", "रन"],
-    "51": ["लाट", "लड्डू"],
-    "52": ["लीन", "लान"],
-    "61": ["शाद", "छत"],
-    "71": ["कुत्ता", "गेंद"],
-    "72": ["कान", "गन"],
-    "81": ["फूट", "वट"],
-    "84": ["फार", "वर"],
-    "91": ["बैट", "पैड"],
-    "92": ["बन", "पान"],
+    "0": ["Saagar", "Zameen", "Saanp"],
+    "1": ["Taala", "Diya", "Teer"],
+    "2": ["Nadi", "Naav", "Naariyal"],
+    "3": ["Moti", "Maala", "Machhli"],
+    "4": ["Rassi", "Raja", "Roti"],
+    "5": ["Laddu", "Lota", "Lalten"],
+    "6": ["Chhaata", "Sher", "Chammach"],
+    "7": ["Kamal", "Gaay", "Kela"],
+    "8": ["Phool", "Veena", "Phal"],
+    "9": ["Patang", "Billi", "Pankha"],
+    "00": ["Seesa", "ZooZoo"],
+    "01": ["Seeta", "Saadi"],
+    "10": ["Tota", "Daasa"],
+    "11": ["Taata", "Daada"],
+    "12": ["Tona", "Deena"],
+    "13": ["Tamaasha", "Dam"],
+    "14": ["Taar", "Door"],
+    "15": ["Til", "Daal"],
+    "21": ["Naad", "Nat"],
+    "22": ["Naana", "Naani"],
+    "23": ["Naam", "Neem"],
+    "31": ["Mitr", "Maat"],
+    "32": ["Man", "Maina"],
+    "41": ["Raat", "Roti"],
+    "42": ["Raani", "Run"],
+    "51": ["Laat", "Laddu"],
+    "52": ["Leen", "Laan"],
+    "61": ["Shaad", "Chhat"],
+    "71": ["Kutta", "Gend"],
+    "72": ["Kaan", "Gun"],
+    "81": ["Phoot", "Vat"],
+    "84": ["Phaar", "Var"],
+    "91": ["Bat", "Pad"],
+    "92": ["Ban", "Paan"],
 }
 
 ROOM_SPOTS = {
-    "मेरा घर (My Home)": [
-        "मुख्य दरवाज़ा", "बरामदा", "बैठक (living room)", "रसोई (kitchen)",
-        "फ्रिज", "पूजा का कमरा", "बेडरूम", "अलमारी",
-        "खिड़की", "छत (terrace)"
+    "Mera Ghar (My Home)": [
+        "Main darwaaza", "Baramda", "Baithak (living room)", "Rasoi (kitchen)",
+        "Fridge", "Pooja ka kamra", "Bedroom", "Almaari",
+        "Khidki", "Chhat (terrace)"
     ],
-    "मंदिर (Temple)": [
-        "मंदिर का गेट", "जूतों की जगह", "घंटा", "मुख्य मूर्ति",
-        "प्रसाद काउंटर", "परिक्रमा का रास्ता", "तुलसी का पौधा", "दान पेटी",
-        "बैठने की जगह", "मंदिर की सीढ़ियाँ"
+    "Mandir (Temple)": [
+        "Mandir ka gate", "Jooton ki jagah", "Ghanta (bell)", "Mukhya moorti",
+        "Prasaad counter", "Parikrama ka raasta", "Tulsi ka paudha", "Daan peti",
+        "Baithne ki jagah", "Mandir ki seedhiyaan"
     ],
-    "बाज़ार (Market)": [
-        "बाज़ार का entrance", "सब्ज़ी वाला", "मिठाई की दुकान", "कपड़े की दुकान",
-        "चाय का ठेला", "फल वाला", "किराना स्टोर", "नाई की दुकान",
-        "ATM", "पार्किंग"
+    "Bazaar (Market)": [
+        "Bazaar ka entrance", "Sabzi wala", "Mithaai ki dukaan", "Kapde ki dukaan",
+        "Chai ka thela", "Phal wala", "Kiraana store", "Naai ki dukaan",
+        "ATM", "Parking"
     ],
-    "स्कूल (School)": [
-        "स्कूल का गेट", "assembly ground", "अपनी class", "blackboard",
-        "principal का office", "library", "canteen", "playground",
-        "science lab", "स्कूल की छत"
+    "School": [
+        "School ka gate", "Assembly ground", "Apni class", "Blackboard",
+        "Principal ka office", "Library", "Canteen", "Playground",
+        "Science lab", "School ki chhat"
     ],
-    "रेलवे स्टेशन (Railway Station)": [
-        "ticket counter", "platform 1", "waiting room", "चाय वाला",
-        "पुल (overbridge)", "बेंच", "bookstall", "पानी का नल",
-        "सीढ़ियाँ", "exit gate"
+    "Railway Station": [
+        "Ticket counter", "Platform 1", "Waiting room", "Chai wala",
+        "Pul (overbridge)", "Bench", "Bookstall", "Paani ka nal",
+        "Seedhiyaan", "Exit gate"
     ],
-    "पार्क (Park)": [
-        "पार्क का गेट", "बेंच", "फव्वारा (fountain)", "बड़ा पेड़",
-        "झूला (swing)", "तालाब", "jogging track", "फूलों की क्यारी",
-        "चबूतरा", "पार्क का exit"
+    "Park": [
+        "Park ka gate", "Bench", "Phawwaara (fountain)", "Bada ped",
+        "Jhoola (swing)", "Talaab", "Jogging track", "Phoolon ki kyaari",
+        "Chabootra", "Park ka exit"
     ],
 }
 
 
-# --- Fallback Generators (Hinglish) ---
+# --- Fallback Generators (Romanized Hinglish) ---
 
 def fallback_link_story(items):
-    lines = ["**आपके items:**"]
+    lines = ["**Aapke items:**"]
     for i, item in enumerate(items, 1):
         lines.append(f"{i}. {item}")
-    lines.append("\n**आपकी Memory Story:**\n")
+    lines.append("\n**Aapki Memory Story:**\n")
     story_parts = []
     for i in range(len(items) - 1):
         adj = random.choice(ADJECTIVES)
         action = random.choice(ACTIONS)
         if i == 0:
-            story_parts.append(f"सोचो एक {adj} **{items[i]}** अचानक **{items[i+1]}** {action}!")
+            story_parts.append(f"Socho ek {adj} **{items[i]}** achanak **{items[i+1]}** {action}!")
         else:
-            story_parts.append(f"फिर वो **{items[i]}** {adj} **{items[i+1]}** {action}!")
+            story_parts.append(f"Phir wo **{items[i]}** {adj} **{items[i+1]}** {action}!")
     lines.append(" ".join(story_parts))
-    lines.append("\n**Tip:** इस scene को अपने दिमाग में 2-3 बार replay करो। जितना ज़्यादा अजीब और vivid imagine करोगे, उतना अच्छा याद रहेगा!")
+    lines.append("\n**Tip:** Is scene ko apne dimaag mein 2-3 baar replay karo. Jitna zyada ajeeb aur vivid imagine karoge, utna achha yaad rahega!")
     return "\n".join(lines)
 
 
@@ -176,15 +176,16 @@ def fallback_peg_associations(items):
         peg = PEGS[num]
         adj = random.choice(ADJECTIVES)
         action = random.choice(ACTIONS)
-        lines.append(f"**Item #{num}: {item}** — Peg: {peg}\nImage: एक {adj} **{peg.split('(')[0].strip()}** {action} एक **{item}**। इसे जितना हो सके उतना vivid imagine करो!\n")
+        peg_word = peg.split("(")[0].strip()
+        lines.append(f"**Item #{num}: {item}** — Peg: {peg}\nImage: Ek {adj} **{peg_word}** {action} ek **{item}**. Ise jitna ho sake utna vivid imagine karo!\n")
     return "\n".join(lines)
 
 
 def fallback_phonetic_words(number):
-    lines = [f"**Number: {number}**\n", "**व्यंजन (Consonant) breakdown:**"]
+    lines = [f"**Number: {number}**\n", "**Consonant breakdown:**"]
     sounds = [f"{digit} = {PHONETIC_MAP.get(digit, '?')}" for digit in number]
     lines.append(", ".join(sounds))
-    lines.append("\n**संभावित शब्द (Possible words):**\n")
+    lines.append("\n**Possible words:**\n")
     words_found = []
     i = 0
     while i < len(number):
@@ -202,11 +203,11 @@ def fallback_phonetic_words(number):
         lines.append(f"1. **{phrase}**")
         for digits, word in words_found:
             lines.append(f"   - {digits} → {word}")
-    lines.append(f"\n2. **अलग-अलग pegs:** " + " - ".join(random.choice(PHONETIC_WORDS.get(d, ["?"])) for d in number))
+    lines.append(f"\n2. **Alag-alag pegs:** " + " - ".join(random.choice(PHONETIC_WORDS.get(d, ["?"])) for d in number))
     adj = random.choice(ADJECTIVES)
     action = random.choice(ACTIONS)
     if words_found:
-        lines.append(f"\n**Best mental image:** सोचो एक {adj} **{words_found[0][1]}** जो सब कुछ {action}!")
+        lines.append(f"\n**Best mental image:** Socho ek {adj} **{words_found[0][1]}** jo sab kuch {action}!")
     return "\n".join(lines)
 
 
@@ -225,22 +226,22 @@ def fallback_substitute_words(words):
         subs = [s.capitalize() for s in syllables]
         adj = random.choice(ADJECTIVES)
         action = random.choice(ACTIONS)
-        lines.append(f"**{word}**\nसुनने में लगता है: {'-'.join(subs)}\nSubstitute: {' + '.join(subs)}\nMental Image: एक {adj} **{subs[0]}** {action} एक **{subs[-1] if len(subs) > 1 else subs[0]}**। इसे जितना अजीब और funny imagine कर सको, उतना अच्छा!\n")
+        lines.append(f"**{word}**\nSunne mein lagta hai: {'-'.join(subs)}\nSubstitute: {' + '.join(subs)}\nMental Image: Ek {adj} **{subs[0]}** {action} ek **{subs[-1] if len(subs) > 1 else subs[0]}**. Ise jitna ajeeb aur funny imagine kar sako, utna achha!\n")
     return "\n".join(lines)
 
 
 def fallback_loci_walkthrough(place, items):
-    spots = ROOM_SPOTS.get(place, [f"जगह #{i+1}" for i in range(len(items))])
-    lines = [f"**आपका Memory Palace: {place}**\n", "**Walkthrough (सैर):**\n"]
+    spots = ROOM_SPOTS.get(place, [f"Jagah #{i+1}" for i in range(len(items))])
+    lines = [f"**Aapka Memory Palace: {place}**\n", "**Walkthrough (Sair):**\n"]
     for i, item in enumerate(items):
         spot = spots[i % len(spots)]
         adj = random.choice(ADJECTIVES)
         action = random.choice(ACTIONS)
-        lines.append(f"**Stop {i+1} — {spot}:** तुम {spot} पर पहुँचते हो और देखते हो कि एक {adj} **{item}** वहाँ {action}! इसे ignore करना impossible है।\n")
-    lines.append("\n**Quick Recap (झटपट दोहराओ):**")
+        lines.append(f"**Stop {i+1} — {spot}:** Tum {spot} par pahunchte ho aur dekhte ho ki ek {adj} **{item}** wahaan {action}! Ise ignore karna impossible hai.\n")
+    lines.append("\n**Quick Recap (Jhatpat doharao):**")
     for i, item in enumerate(items):
         lines.append(f"- {spots[i % len(spots)]} → **{item}**")
-    lines.append(f"\n**Tip:** आँखें बंद करो और अपने {place} में mentally walk करो। हर जगह पर वो अजीब image देखो। जितना practice करोगे, उतना strong याद रहेगा!")
+    lines.append(f"\n**Tip:** Aankhein band karo aur apne {place} mein mentally walk karo. Har jagah par wo ajeeb image dekho. Jitna practice karoge, utna strong yaad rahega!")
     return "\n".join(lines)
 
 
@@ -263,14 +264,19 @@ class LociWalkthroughRequest(BaseModel):
     items: list[str]
 
 
-# --- Hinglish System Instruction ---
-HINGLISH_INSTRUCTION = """IMPORTANT: Respond in Hinglish — conversational Hindi mixed with English words naturally, just like how a Hindi-speaking person actually talks in daily life. Use Devanagari script for Hindi words. Examples of the tone:
-- "सोचो कि एक giant दूध का carton उड़ कर बिल्ली पर गिरता है!"
-- "अब ये image अपने दिमाग में fix करो"
-- "इसे याद रखने का सबसे easy तरीका ये है कि..."
-- "पहले item को दूसरे से link करो, फिर दूसरे को तीसरे से"
+# --- Romanized Hinglish System Instruction ---
+HINGLISH_INSTRUCTION = """IMPORTANT: Respond in Romanized Hinglish — Hindi written in English/Roman script mixed with English words naturally, exactly like how Hindi speakers type on WhatsApp or chat. DO NOT use Devanagari script at all. Write everything in English letters only.
 
-Keep the tone fun, friendly, and easy to understand for a Hindi speaker who is not strong in English."""
+Examples of the tone and style:
+- "Socho ki ek giant doodh ka carton udd kar billi par girta hai!"
+- "Ab ye image apne dimaag mein fix karo"
+- "Ise yaad rakhne ka sabse easy tarika ye hai ki..."
+- "Pehle item ko dusre se link karo, phir dusre ko teesre se"
+- "Kya scene hai! Bilkul pagal picture hai ye!"
+
+NEVER use Devanagari (Hindi script). Always write Hindi words in English letters like: kaise, kya, achha, bahut, socho, dekho, wala, etc.
+
+Keep the tone fun, friendly, and easy to understand for a Hindi speaker."""
 
 
 # --- Endpoints ---
@@ -283,7 +289,7 @@ def status():
 @app.post("/api/link-story")
 def generate_link_story(req: LinkStoryRequest):
     if not req.items or len(req.items) < 2:
-        raise HTTPException(400, "कम से कम 2 items डालो")
+        raise HTTPException(400, "Kam se kam 2 items daalo")
     items_str = ", ".join(req.items)
     prompt = f"""{HINGLISH_INSTRUCTION}
 
@@ -298,7 +304,7 @@ Format:
 2. Phir story sunao, har item ko **bold** mein highlight karo.
 3. End mein ek quick tip do ki mentally story kaise replay karein.
 
-Concise aur entertaining rakho. Hinglish mein likho!"""
+Concise aur entertaining rakho. Romanized Hinglish mein likho — NO Devanagari!"""
     result = ask_claude(prompt)
     return {"story": result or fallback_link_story(req.items)}
 
@@ -306,15 +312,15 @@ Concise aur entertaining rakho. Hinglish mein likho!"""
 @app.post("/api/peg-associate")
 def generate_peg_associations(req: PegAssociateRequest):
     if not req.items:
-        raise HTTPException(400, "कम से कम 1 item डालो")
+        raise HTTPException(400, "Kam se kam 1 item daalo")
     items_str = "\n".join(f"{i+1}. {item}" for i, item in enumerate(req.items))
     prompt = f"""{HINGLISH_INSTRUCTION}
 
 Tu ek memory coach hai jo "The Memory Book" ki Peg System technique sikhata hai.
 
 Hindi Peg List:
-1=ताज (Taj), 2=नाग (Naag), 3=मोर (Mor), 4=रथ (Rath), 5=लड्डू (Laddu)
-6=छाता (Chhaata), 7=कमल (Kamal), 8=फूल (Phool), 9=पंखा (Pankha), 10=तोता (Tota)
+1=Taaj (Crown), 2=Naag (Snake), 3=Mor (Peacock), 4=Rath (Chariot), 5=Laddu (Sweet)
+6=Chhaata (Umbrella), 7=Kamal (Lotus), 8=Phool (Flower), 9=Pankha (Fan), 10=Tota (Parrot)
 
 User ye items yaad karna chahta hai position wise:
 {items_str}
@@ -323,9 +329,9 @@ Har item ke liye ek bizarre, vivid, funny mental image banao jo PEG word ko item
 
 Format:
 **Item #N: [item]** — Peg: [peg word]
-Image: [vivid bizarre association Hinglish mein]
+Image: [vivid bizarre association Romanized Hinglish mein]
 
-Har image 1-2 sentences mein. Wild aur memorable banao!"""
+Har image 1-2 sentences mein. Wild aur memorable banao! NO Devanagari!"""
     result = ask_claude(prompt)
     return {"associations": result or fallback_peg_associations(req.items)}
 
@@ -333,24 +339,24 @@ Har image 1-2 sentences mein. Wild aur memorable banao!"""
 @app.post("/api/phonetic-words")
 def generate_phonetic_words(req: PhoneticWordsRequest):
     if not req.number or not req.number.isdigit():
-        raise HTTPException(400, "एक valid number डालो")
+        raise HTTPException(400, "Ek valid number daalo")
     prompt = f"""{HINGLISH_INSTRUCTION}
 
 Tu ek memory coach hai jo "The Memory Book" ka Phonetic Alphabet (Hindi version) sikhata hai.
 
-Hindi Phonetic Code:
-0=स/ज़  1=त/द  2=न  3=म  4=र  5=ल  6=छ/श/च  7=क/ग  8=फ/व  9=प/ब
+Hindi Phonetic Code (based on Hindi consonants):
+0=S/Z  1=T/D  2=N  3=M  4=R  5=L  6=Chh/Sh/Ch  7=K/G  8=Ph/V  9=P/B
 
-Vowels (अ,आ,इ,ई,उ,ऊ,ए,ऐ,ओ,औ) aur ह,य,व ki koi value nahi — ye fillers hain.
+Vowels (A, Aa, I, Ee, U, Oo, E, Ai, O, Au) aur H, Y, W ki koi value nahi — ye fillers hain.
 
 User ye number yaad karna chahta hai: {req.number}
 
-1. Number ko uske consonant sounds mein todo (Hindi mein).
-2. 3 yaadgaar Hindi/Hinglish words ya short phrases banao jo is number ko encode karein.
+1. Number ko uske consonant sounds mein todo.
+2. 3 yaadgaar Hindi words (Romanized) ya short phrases banao jo is number ko encode karein.
 3. Har word ke liye dikhao ki consonants kaise digits se map hote hain.
 4. Sabse best word choose karo aur uska ek vivid mental image banao.
 
-Creative bano aur words easy to picture banao! Hinglish mein likho."""
+Creative bano aur words easy to picture banao! Romanized Hinglish mein likho — NO Devanagari!"""
     result = ask_claude(prompt)
     return {"words": result or fallback_phonetic_words(req.number)}
 
@@ -358,7 +364,7 @@ Creative bano aur words easy to picture banao! Hinglish mein likho."""
 @app.post("/api/substitute-words")
 def generate_substitute_words(req: SubstituteWordsRequest):
     if not req.words:
-        raise HTTPException(400, "कम से कम 1 word डालो")
+        raise HTTPException(400, "Kam se kam 1 word daalo")
     words_str = ", ".join(req.words)
     prompt = f"""{HINGLISH_INSTRUCTION}
 
@@ -375,9 +381,9 @@ Format:
 **[Original Word]**
 Sunne mein lagta hai: [phonetic breakdown]
 Substitute: [concrete words]
-Mental Image: [1-2 sentence vivid scene Hinglish mein]
+Mental Image: [1-2 sentence vivid scene Romanized Hinglish mein]
 
-Creative, funny, aur images jitni weird ho sakein utni weird banao!"""
+Creative, funny, aur images jitni weird ho sakein utni weird banao! NO Devanagari!"""
     result = ask_claude(prompt)
     return {"substitutes": result or fallback_substitute_words(req.words)}
 
@@ -385,7 +391,7 @@ Creative, funny, aur images jitni weird ho sakein utni weird banao!"""
 @app.post("/api/loci-walkthrough")
 def generate_loci_walkthrough(req: LociWalkthroughRequest):
     if not req.items or not req.place:
-        raise HTTPException(400, "Jagah aur items dono daalein")
+        raise HTTPException(400, "Jagah aur items dono daalo")
     items_str = ", ".join(req.items)
     prompt = f"""{HINGLISH_INSTRUCTION}
 
@@ -401,7 +407,7 @@ Ek vivid guided walkthrough banao memory palace ka:
 3. Har placement vivid, funny, aur impossible hona chahiye — environment ke saath weird tarike se interact karna chahiye.
 4. End mein ek quick recap do — har spot aur uska item.
 
-Second person mein likho ("Tum andar jaate ho aur dekhte ho ki..."). Engaging aur fun rakho! Hinglish mein likho."""
+Second person mein likho ("Tum andar jaate ho aur dekhte ho ki..."). Engaging aur fun rakho! Romanized Hinglish mein — NO Devanagari!"""
     result = ask_claude(prompt)
     return {"walkthrough": result or fallback_loci_walkthrough(req.place, req.items)}
 

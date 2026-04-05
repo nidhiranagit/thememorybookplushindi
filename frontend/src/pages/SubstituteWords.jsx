@@ -12,7 +12,7 @@ export default function SubstituteWords() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const words = input.split(",").map((s) => s.trim()).filter(Boolean);
-    if (words.length < 1) return alert("कम से कम 1 word डालो");
+    if (words.length < 1) return alert("Kam se kam 1 word daalo");
     setLoading(true);
     setResult("");
     try {
@@ -24,7 +24,7 @@ export default function SubstituteWords() {
       const data = await res.json();
       setResult(data.substitutes);
     } catch (err) {
-      setResult("Error: Backend server से connect नहीं हो पाया।");
+      setResult("Error: Backend server se connect nahi ho paaya.");
     }
     setLoading(false);
   };
@@ -32,47 +32,47 @@ export default function SubstituteWords() {
   const theory = (
     <>
       <p>
-        <strong>Substitute Word</strong> technique abstract, foreign, या
-        mushkil words को <em>concrete, visualize करने लायक substitutes</em> में बदलती है
-        जो सुनने में मिलते-जुलते हों।
+        <strong>Substitute Word</strong> technique abstract, foreign, ya
+        mushkil words ko <em>concrete, visualize karne laayak substitutes</em> mein badalti hai
+        jo sunne mein milte-julte hon.
       </p>
       <div className="key-points">
-        <h3>कैसे काम करता है:</h3>
+        <h3>Kaise kaam karta hai:</h3>
         <ol>
-          <li><strong>तोड़ो</strong> — word को syllables में तोड़ो</li>
-          <li><strong>ढूँढो</strong> — हर syllable जैसी सुनाई देने वाली concrete चीज़ ढूँढो</li>
-          <li><strong>बनाओ</strong> — उन substitute words को मिला कर एक vivid, bizarre image बनाओ</li>
+          <li><strong>Todo</strong> — Word ko syllables mein todo</li>
+          <li><strong>Dhundho</strong> — Har syllable jaisi sunaai dene wali concrete cheez dhundho</li>
+          <li><strong>Banao</strong> — Un substitute words ko mila kar ek vivid, bizarre image banao</li>
         </ol>
       </div>
       <div className="example-box">
-        <h3>Example (उदाहरण):</h3>
-        <p><strong>"Photosynthesis"</strong> (प्रकाश संश्लेषण)</p>
-        <p>सुनने में लगता है: <strong>"Photo-Sin-Thesis"</strong></p>
-        <p>सोचो: एक <strong>photo</strong> (camera) जो <strong>sin</strong> (पाप) कर रहा है —
-        एक <strong>thesis</strong> (किताब) चुरा रहा है — और सब कुछ धूप में हो रहा है!</p>
+        <h3>Example:</h3>
+        <p><strong>"Photosynthesis"</strong></p>
+        <p>Sunne mein lagta hai: <strong>"Photo-Sin-Thesis"</strong></p>
+        <p>Socho: Ek <strong>photo</strong> (camera) jo <strong>sin</strong> (paap) kar raha hai —
+        ek <strong>thesis</strong> (kitaab) chura raha hai — aur sab kuch dhoop mein ho raha hai!</p>
       </div>
       <div className="example-box">
-        <h3>एक और Example:</h3>
-        <p><strong>"Mitochondria"</strong> (माइटोकॉन्ड्रिया)</p>
-        <p>सुनने में लगता है: <strong>"Mighty-Konda-Ria"</strong></p>
-        <p>सोचो: एक <strong>mighty</strong> (ताकतवर) आदमी <strong>कोंडा</strong> (पहाड़) पर
-        <strong>रिया</strong> (ladki) को बचा रहा है — Bollywood style!</p>
+        <h3>Ek aur Example:</h3>
+        <p><strong>"Mitochondria"</strong></p>
+        <p>Sunne mein lagta hai: <strong>"Mighty-Konda-Ria"</strong></p>
+        <p>Socho: Ek <strong>mighty</strong> (takatwar) aadmi <strong>Konda</strong> (pahaad) par
+        <strong> Ria</strong> (ladki) ko bacha raha hai — Bollywood style!</p>
       </div>
     </>
   );
 
   return (
-    <ChapterLayout number={4} title="Substitute Words (बदली शब्द)" icon={"\u{1F504}"} theory={theory}>
+    <ChapterLayout number={4} title="Substitute Words (Badli Shabd)" icon={"\u{1F504}"} theory={theory}>
       <form onSubmit={handleSubmit} className="tool-form">
-        <label>वो mushkil या abstract words डालो (comma से अलग):</label>
+        <label>Wo mushkil ya abstract words daalo (comma se alag):</label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="जैसे: photosynthesis, algorithm, Renaissance, mitochondria"
+          placeholder="jaise: photosynthesis, algorithm, Renaissance, mitochondria"
           rows={3}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "बन रही है..." : "Substitutes बनाओ"}
+          {loading ? "Ban rahi hai..." : "Substitutes Banao"}
         </button>
       </form>
 
@@ -80,7 +80,7 @@ export default function SubstituteWords() {
 
       {result && (
         <div className="result-box">
-          <h3>आपके Substitute Words:</h3>
+          <h3>Aapke Substitute Words:</h3>
           <div className="result-content" dangerouslySetInnerHTML={{
             __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
           }} />
