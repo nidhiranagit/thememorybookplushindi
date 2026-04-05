@@ -372,16 +372,27 @@ Tu ek memory coach hai jo "The Memory Book" ki Substitute Word technique sikhata
 
 User ye abstract ya mushkil words yaad karna chahta hai: {words_str}
 
+BAHUT IMPORTANT: Sirf word ka naam yaad karna kaafi nahi hai — uska ACTUAL MEANING bhi image mein encode karna hai! Substitute image aisi honi chahiye ki word ka pronunciation BHI yaad rahe aur uska real meaning BHI samajh aaye.
+
 Har word ke liye:
-1. Word ko syllables mein todo jo kisi concrete, picture-worthy cheez jaisi awaaz karein (Hindi ya English dono use kar sakte ho).
-2. Un sounds se ek substitute phrase banao.
-3. Un substitute words ko combine karke ek vivid, bizarre mental image banao.
+1. Pehle word ka REAL MEANING samjhao (1 line mein simple Hinglish mein).
+2. Word ko syllables mein todo jo kisi concrete, picture-worthy cheez jaisi awaaz karein.
+3. Un sounds se ek substitute phrase banao.
+4. Ab ek vivid, bizarre mental image banao jo DONO kaam kare:
+   - Word ka pronunciation yaad rahe (substitute sounds se)
+   - Word ka ACTUAL meaning bhi image mein dikhe (kya karta hai, kya hai)
 
 Format:
 **[Original Word]**
+Matlab (Meaning): [real meaning simple Hinglish mein]
 Sunne mein lagta hai: [phonetic breakdown]
 Substitute: [concrete words]
-Mental Image: [1-2 sentence vivid scene Romanized Hinglish mein]
+Mental Image: [2-3 sentence vivid scene jo pronunciation + meaning DONO encode kare]
+Kaise yaad rahega: [1 line explaining how the image captures both name + meaning]
+
+Example approach:
+- "Mitochondria" = powerhouse of cell. So image mein ENERGY/POWER dikhao + "Mighty-Konda-Ria" sounds.
+- "Photosynthesis" = plants make food from sunlight. So image mein PLANTS + SUNLIGHT + FOOD dikhao + "Photo-Sin-Thesis" sounds.
 
 Creative, funny, aur images jitni weird ho sakein utni weird banao! NO Devanagari!"""
     result = ask_claude(prompt)

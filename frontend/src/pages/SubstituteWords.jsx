@@ -32,31 +32,34 @@ export default function SubstituteWords() {
   const theory = (
     <>
       <p>
-        <strong>Substitute Word</strong> technique abstract, foreign, ya
-        mushkil words ko <em>concrete, visualize karne laayak substitutes</em> mein badalti hai
-        jo sunne mein milte-julte hon.
+        <strong>Substitute Word</strong> technique mushkil words ko <em>picture-worthy substitutes</em> mein badalti hai — lekin sirf naam yaad karna kaafi nahi!
+        Image aisi honi chahiye jo word ka <strong>naam BHI</strong> aur uska <strong>actual meaning BHI</strong> encode kare.
       </p>
       <div className="key-points">
         <h3>Kaise kaam karta hai:</h3>
         <ol>
-          <li><strong>Todo</strong> — Word ko syllables mein todo</li>
-          <li><strong>Dhundho</strong> — Har syllable jaisi sunaai dene wali concrete cheez dhundho</li>
-          <li><strong>Banao</strong> — Un substitute words ko mila kar ek vivid, bizarre image banao</li>
+          <li><strong>Samjho</strong> — Pehle word ka real meaning samjho</li>
+          <li><strong>Todo</strong> — Word ko similar-sounding concrete words mein todo</li>
+          <li><strong>Jodo</strong> — Ab ek image banao jo DONO kaam kare: pronunciation yaad rahe + meaning bhi dikhe</li>
         </ol>
       </div>
       <div className="example-box">
         <h3>Example:</h3>
-        <p><strong>"Photosynthesis"</strong></p>
+        <p><strong>"Photosynthesis"</strong> — Matlab: Plants sunlight se apna food (glucose) aur oxygen banaate hain</p>
         <p>Sunne mein lagta hai: <strong>"Photo-Sin-Thesis"</strong></p>
-        <p>Socho: Ek <strong>photo</strong> (camera) jo <strong>sin</strong> (paap) kar raha hai —
-        ek <strong>thesis</strong> (kitaab) chura raha hai — aur sab kuch dhoop mein ho raha hai!</p>
+        <p>Socho: Ek <strong>photo</strong> (camera) dhoop mein khada hai, <strong>sin</strong> (paap) karke
+        ek plant se khana chura raha hai, aur plant apni <strong>thesis</strong> (kitaab) se oxygen ke bubbles
+        chhod raha hai! Camera = photo, dhoop = sunlight, plant = plant, khana = food, oxygen = bubbles!</p>
+        <p><em>Kaise yaad rahega: Photo = naam, dhoop + plant + khana + oxygen = poora meaning!</em></p>
       </div>
       <div className="example-box">
         <h3>Ek aur Example:</h3>
-        <p><strong>"Mitochondria"</strong></p>
+        <p><strong>"Mitochondria"</strong> — Matlab: Cell ka powerhouse, energy (ATP) produce karta hai</p>
         <p>Sunne mein lagta hai: <strong>"Mighty-Konda-Ria"</strong></p>
-        <p>Socho: Ek <strong>mighty</strong> (takatwar) aadmi <strong>Konda</strong> (pahaad) par
-        <strong> Ria</strong> (ladki) ko bacha raha hai — Bollywood style!</p>
+        <p>Socho: Ek <strong>mighty</strong> (takatwar) aadmi ek chhote se cell ke andar <strong>Konda</strong> (pahaad)
+        par khada hai, uske haathon mein bijli ke bolts hain, aur <strong>Ria</strong> (ladki) ko energy de raha hai
+        taaki wo superpower se udd sake!</p>
+        <p><em>Kaise yaad rahega: Mighty = powerhouse naam, cell ke andar = cell mein hota hai, bijli = energy produce karta hai!</em></p>
       </div>
     </>
   );
