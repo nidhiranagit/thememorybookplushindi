@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ChapterLayout from "../components/ChapterLayout";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MarkdownRenderer from "../components/MarkdownRenderer";
 
 const API = "http://localhost:8001";
 
@@ -121,9 +122,7 @@ export default function LociMethod() {
       {result && (
         <div className="result-box">
           <h3>Aapka Memory Palace Walkthrough:</h3>
-          <div className="result-content" dangerouslySetInnerHTML={{
-            __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
-          }} />
+          <MarkdownRenderer content={result} />
         </div>
       )}
     </ChapterLayout>

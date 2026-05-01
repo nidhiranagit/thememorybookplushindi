@@ -482,9 +482,16 @@ Final summary table jo recall trigger words deta hai:
 | Trigger | What you remember |
 
 **Last Section: Comparison Triangle (agar definition mein comparison hai)**
-Agar definition mein 2-3 cheezon ka comparison hai, ek visual triangle banao with characters showing differences.
+Agar definition mein 2-3 cheezon ka comparison hai, ek visual triangle banao with characters showing differences. ASCII art ke liye TRIPLE BACKTICK code block use karo (```) taaki proper structure render ho.
 
-Format poora structured rakho with bold headings, tables, and emojis. Romanized Hinglish mein — NO Devanagari! Make it engaging, fun, aur educational."""
+IMPORTANT FORMATTING RULES:
+- Use proper Markdown tables with pipes: | Col1 | Col2 |
+- For ASCII art/trees, ALWAYS wrap them in ```code blocks``` (triple backticks) so spacing is preserved
+- Use ## for headings, ** for bold
+- Use --- for section separators
+- Format poora structured rakho with bold headings, tables, code blocks, aur emojis
+
+Romanized Hinglish mein — NO Devanagari! Make it engaging, fun, aur educational."""
     result = ask_claude(prompt)
     return {"memory_aid": result or fallback_definition_memorize(req.definition)}
 
