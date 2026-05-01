@@ -5,6 +5,7 @@ import PegSystem from "./pages/PegSystem";
 import PhoneticAlphabet from "./pages/PhoneticAlphabet";
 import SubstituteWords from "./pages/SubstituteWords";
 import LociMethod from "./pages/LociMethod";
+import DefinitionMemorizer from "./pages/DefinitionMemorizer";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/phonetic-alphabet" element={<PhoneticAlphabet />} />
         <Route path="/substitute-words" element={<SubstituteWords />} />
         <Route path="/loci-method" element={<LociMethod />} />
+        <Route path="/definition-memorizer" element={<DefinitionMemorizer />} />
       </Routes>
     </div>
   );

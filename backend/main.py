@@ -263,6 +263,9 @@ class LociWalkthroughRequest(BaseModel):
     place: str
     items: list[str]
 
+class DefinitionMemorizeRequest(BaseModel):
+    definition: str
+
 
 # --- Romanized Hinglish System Instruction ---
 HINGLISH_INSTRUCTION = """IMPORTANT: Respond in Romanized Hinglish — Hindi written in English/Roman script mixed with English words naturally, exactly like how Hindi speakers type on WhatsApp or chat. DO NOT use Devanagari script at all. Write everything in English letters only.
@@ -421,6 +424,69 @@ Ek vivid guided walkthrough banao memory palace ka:
 Second person mein likho ("Tum andar jaate ho aur dekhte ho ki..."). Engaging aur fun rakho! Romanized Hinglish mein — NO Devanagari!"""
     result = ask_claude(prompt)
     return {"walkthrough": result or fallback_loci_walkthrough(req.place, req.items)}
+
+
+def fallback_definition_memorize(definition):
+    return f"""**Aapki Definition:**
+{definition}
+
+**MOVIE Method ke 5 Steps:**
+
+**M — Mark key points:** Definition ko 3-5 main points mein todo. Har sentence ka core idea identify karo.
+
+**O — Object-ify:** Har technical term ko ek visual character/object banao (jaise Substitute Words technique mein).
+
+**V — Visualize:** Un characters ki ek funny, bizarre interaction story banao (jaise Link System).
+
+**I — Install:** Story ko apne ghar ke rooms mein rakho (jaise Loci Method).
+
+**E — Encode:** Har image meaning bhi capture kare, sirf naam nahi — Action + Property + Difference dikhao!
+
+**Tip:** Behtar response ke liye Claude AI enable karo — wo poori detailed character-based story banayega aapke liye!
+"""
+
+
+@app.post("/api/definition-memorize")
+def memorize_definition(req: DefinitionMemorizeRequest):
+    if not req.definition or len(req.definition.strip()) < 20:
+        raise HTTPException(400, "Kam se kam ek proper definition daalo (20+ characters)")
+    prompt = f"""{HINGLISH_INSTRUCTION}
+
+Tu ek memory coach hai jo paragraph-style technical definitions yaad karwane ki "MOVIE Method" sikhata hai. Ye method 5 steps ka hybrid approach hai jo Substitute Words + Link System + Loci Method combine karta hai.
+
+User ye definition yaad karna chahta hai:
+"{req.definition}"
+
+Apply the MOVIE Method aur ek complete memory aid generate karo:
+
+**Step 1: M — MARK Key Points**
+Definition ko 3-5 main points mein todo. Har point ek line mein simple Hinglish mein.
+
+**Step 2: O — OBJECT-IFY (Characters banao)**
+Har technical concept ko ek visual character ya object mein convert karo. Table format mein dikhao:
+| Concept | Character | Why this works |
+
+Use Hindi/Indian-style relatable characters (Hubby, Maa, Muscle bhai, Bahar pada Liar, Triangle, etc.)
+
+**Step 3: V — VISUALIZE (Story banao)**
+Sab characters ko ek single funny scene mein interact karwao. Story mein 3-5 paragraphs ho. **MOST IMPORTANT:** Story sirf naam nahi, ACTUAL meaning bhi encode kare — properties, behaviors, comparisons, formulas, sab kuch.
+
+**Step 4: I — INSTALL in Memory Palace (Loci Method)**
+"Mera Ghar" ke rooms mein har key point rakho:
+- Darwaaza, Baramda, Living Room, Rasoi, Bedroom, Chhat
+Table format mein dikhao:
+| Spot | Image | Encodes |
+
+**Step 5: E — ENCODE Quick Recall Triggers**
+Final summary table jo recall trigger words deta hai:
+| Trigger | What you remember |
+
+**Last Section: Comparison Triangle (agar definition mein comparison hai)**
+Agar definition mein 2-3 cheezon ka comparison hai, ek visual triangle banao with characters showing differences.
+
+Format poora structured rakho with bold headings, tables, and emojis. Romanized Hinglish mein — NO Devanagari! Make it engaging, fun, aur educational."""
+    result = ask_claude(prompt)
+    return {"memory_aid": result or fallback_definition_memorize(req.definition)}
 
 
 if __name__ == "__main__":

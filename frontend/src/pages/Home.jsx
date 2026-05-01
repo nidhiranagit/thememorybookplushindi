@@ -36,6 +36,13 @@ const chapters = [
     description: "Apna Memory Palace banao! Items ko jaani-pehchaani jagahon par rakho aur walk karke yaad karo.",
     path: "/loci-method",
   },
+  {
+    number: 6,
+    title: "Definition Memorizer (MOVIE Method)",
+    icon: "\u{1F3AC}",
+    description: "Paragraph-style technical definitions yaad karo! Loss functions, optimizers, theory — sab character-based stories mein convert.",
+    path: "/definition-memorizer",
+  },
 ];
 
 export default function Home() {
@@ -47,7 +54,7 @@ export default function Home() {
           Harry Lorayne & Jerry Lucas ki classic guide par based — Hindi Edition
         </p>
         <p className="tagline">
-          5 powerful memory techniques seekho AI-powered practice tools ke saath
+          6 powerful memory techniques seekho AI-powered practice tools ke saath
         </p>
       </header>
 
