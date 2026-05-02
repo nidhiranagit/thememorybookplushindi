@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ChapterLayout from "../components/ChapterLayout";
 import LoadingSpinner from "../components/LoadingSpinner";
 import MarkdownRenderer from "../components/MarkdownRenderer";
+import ExportButtons from "../components/ExportButtons";
 
 const API = "http://localhost:8001";
 
@@ -20,6 +21,7 @@ export default function LociMethod() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const resultRef = useRef(null);
 
   const selectedPlace = place === "custom" ? customPlace : place;
 
@@ -122,7 +124,10 @@ export default function LociMethod() {
       {result && (
         <div className="result-box">
           <h3>Aapka Memory Palace Walkthrough:</h3>
-          <MarkdownRenderer content={result} />
+          <ExportButtons targetRef={resultRef} filename="memory-palace-walkthrough" title="Memory Palace Walkthrough" />
+          <div ref={resultRef}>
+            <MarkdownRenderer content={result} />
+          </div>
         </div>
       )}
     </ChapterLayout>

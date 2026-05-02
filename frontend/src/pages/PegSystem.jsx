@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ChapterLayout from "../components/ChapterLayout";
 import LoadingSpinner from "../components/LoadingSpinner";
 import MarkdownRenderer from "../components/MarkdownRenderer";
+import ExportButtons from "../components/ExportButtons";
 
 const API = "http://localhost:8001";
 
@@ -22,6 +23,7 @@ export default function PegSystem() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const resultRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,7 +94,10 @@ export default function PegSystem() {
       {result && (
         <div className="result-box">
           <h3>Aapki Peg Associations:</h3>
-          <MarkdownRenderer content={result} />
+          <ExportButtons targetRef={resultRef} filename="peg-system-associations" title="Peg System — Associations" />
+          <div ref={resultRef}>
+            <MarkdownRenderer content={result} />
+          </div>
         </div>
       )}
     </ChapterLayout>
