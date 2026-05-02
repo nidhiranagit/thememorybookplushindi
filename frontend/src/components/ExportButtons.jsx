@@ -1,6 +1,4 @@
-import { useRef } from "react";
 import html2pdf from "html2pdf.js";
-import { asBlob } from "html-docx-js-typescript";
 import { saveAs } from "file-saver";
 
 export default function ExportButtons({ targetRef, filename = "memory-aid", title = "Memory Aid" }) {
@@ -21,44 +19,123 @@ export default function ExportButtons({ targetRef, filename = "memory-aid", titl
     }
   };
 
-  const exportDOCX = async () => {
+  // Word-compatible HTML approach (most reliable in browsers)
+  // Word opens .doc files with HTML content perfectly
+  const exportDOCX = () => {
     if (!targetRef?.current) return;
     try {
-      // Build a complete HTML document with inline styles for DOCX
       const inner = targetRef.current.innerHTML;
-      const html = `
-<!DOCTYPE html>
-<html>
+      if (!inner || inner.trim().length === 0) {
+        alert("Kuch content nahi hai export karne ke liye!");
+        return;
+      }
+
+      const styles = `
+        body {
+          font-family: 'Calibri', Arial, sans-serif;
+          font-size: 12pt;
+          line-height: 1.6;
+          color: #333;
+          margin: 40px;
+        }
+        h1, h2, h3, h4 {
+          color: #6c3ce0;
+          font-family: 'Calibri', Arial, sans-serif;
+          margin-top: 18px;
+          margin-bottom: 8px;
+        }
+        h1 { font-size: 22pt; }
+        h2 { font-size: 18pt; }
+        h3 { font-size: 14pt; }
+        h4 { font-size: 12pt; font-weight: bold; }
+        strong { color: #111827; font-weight: bold; }
+        em { font-style: italic; }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin: 12px 0;
+          mso-table-lspace: 0pt;
+          mso-table-rspace: 0pt;
+        }
+        th {
+          background-color: #6c3ce0;
+          color: white !important;
+          padding: 10px;
+          text-align: left;
+          border: 1px solid #4c2db0;
+          font-weight: bold;
+        }
+        td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          vertical-align: top;
+        }
+        tr:nth-child(even) td { background-color: #f5f3ff; }
+        ul, ol { margin: 8px 0; padding-left: 30px; }
+        li { margin-bottom: 4px; }
+        pre {
+          background: #1f2028;
+          color: #e8e6f0;
+          padding: 12px;
+          font-family: 'Consolas', 'Courier New', monospace;
+          font-size: 10pt;
+          white-space: pre;
+          border: 1px solid #333;
+          margin: 10px 0;
+        }
+        code {
+          background: #ede9fe;
+          color: #6c3ce0;
+          padding: 2px 5px;
+          font-family: 'Consolas', 'Courier New', monospace;
+          font-size: 11pt;
+          border: 1px solid #d4c5fb;
+        }
+        blockquote {
+          border-left: 4px solid #8b5cf6;
+          padding-left: 14px;
+          margin: 10px 0;
+          font-style: italic;
+          color: #555;
+        }
+        hr { border: none; border-top: 1px solid #cccccc; margin: 16px 0; }
+        p { margin: 8px 0; }
+      `;
+
+      // Word-compatible HTML with proper namespaces
+      const html = `<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+      xmlns:w='urn:schemas-microsoft-com:office:word'
+      xmlns='http://www.w3.org/TR/REC-html40'>
 <head>
-<meta charset="UTF-8" />
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta name='ProgId' content='Word.Document'>
+<meta name='Generator' content='Microsoft Word 15'>
+<meta name='Originator' content='Microsoft Word 15'>
 <title>${title}</title>
-<style>
-  body { font-family: 'Calibri', 'Arial', sans-serif; font-size: 12pt; line-height: 1.6; color: #333; }
-  h1, h2, h3, h4 { color: #6c3ce0; margin-top: 16px; margin-bottom: 8px; }
-  h1 { font-size: 22pt; }
-  h2 { font-size: 18pt; }
-  h3 { font-size: 14pt; }
-  h4 { font-size: 12pt; }
-  strong { color: #111827; font-weight: bold; }
-  table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-  th { background-color: #6c3ce0; color: white; padding: 8px; text-align: left; border: 1px solid #ccc; }
-  td { padding: 8px; border: 1px solid #ccc; }
-  tr:nth-child(even) td { background-color: #f5f3ff; }
-  ul, ol { padding-left: 24px; }
-  li { margin-bottom: 4px; }
-  pre { background: #1f2028; color: #e8e6f0; padding: 12px; border-radius: 4px; font-family: 'Consolas', 'Courier New', monospace; font-size: 10pt; white-space: pre; }
-  code { background: #ede9fe; color: #6c3ce0; padding: 2px 4px; border-radius: 3px; font-family: 'Consolas', monospace; }
-  blockquote { border-left: 4px solid #8b5cf6; padding-left: 12px; margin: 10px 0; font-style: italic; color: #555; }
-  hr { border: none; border-top: 1px solid #e5e7eb; margin: 16px 0; }
-</style>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>${styles}</style>
 </head>
 <body>
 <h1>${title}</h1>
+<hr/>
 ${inner}
 </body>
 </html>`;
-      const blob = await asBlob(html);
-      saveAs(blob, `${filename}.docx`);
+
+      // BOM + UTF-8 ensures Hindi/Devanagari renders correctly
+      const blob = new Blob(["\ufeff", html], {
+        type: "application/msword;charset=utf-8",
+      });
+      saveAs(blob, `${filename}.doc`);
     } catch (err) {
       alert("DOCX export failed: " + err.message);
     }
@@ -69,8 +146,8 @@ ${inner}
       <button type="button" className="export-btn export-pdf" onClick={exportPDF} title="Export as PDF">
         📄 Export PDF
       </button>
-      <button type="button" className="export-btn export-docx" onClick={exportDOCX} title="Export as DOCX">
-        📝 Export DOCX
+      <button type="button" className="export-btn export-docx" onClick={exportDOCX} title="Export as Word document">
+        📝 Export Word
       </button>
     </div>
   );
