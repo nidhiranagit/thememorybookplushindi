@@ -9,7 +9,7 @@ import { saveAs } from "file-saver";
  * - filename: base filename (no extension)
  * - title: document title
  * - inputLabel: label for the user's input section (e.g. "Aapka Input", "Items", "Number")
- * - inputContent: the actual input string/HTML to show in the export
+ * - inputContent: the actual input string to show in the export
  */
 export default function ExportButtons({
   targetRef,
@@ -18,60 +18,63 @@ export default function ExportButtons({
   inputLabel = "Aapka Input",
   inputContent = "",
 }) {
-  // Build a temporary wrapper that contains: title + input section + result content
-  // Used by both PDF and DOCX exports
-  const buildExportWrapper = () => {
-    if (!targetRef?.current) return null;
-    const resultHTML = targetRef.current.innerHTML;
-    if (!resultHTML || resultHTML.trim().length === 0) {
-      alert("Kuch content nahi hai export karne ke liye!");
-      return null;
-    }
-
-    const inputSection = inputContent
-      ? `
-        <div class="export-input-section">
-          <h2>📥 ${inputLabel}</h2>
-          <div class="input-content">${escapeHtml(inputContent)}</div>
-        </div>
-        <hr/>
-      `
-      : "";
-
-    const wrapper = document.createElement("div");
-    wrapper.style.fontFamily =
-      "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
-    wrapper.style.padding = "20px";
-    wrapper.style.background = "#ffffff";
-    wrapper.innerHTML = `
-      <h1 style="color: #6c3ce0; border-bottom: 3px solid #6c3ce0; padding-bottom: 8px; margin-bottom: 16px;">
-        ${title}
-      </h1>
-      ${inputSection}
-      <div class="export-result-section">
-        <h2>✨ Memory Aid Result</h2>
-        ${resultHTML}
-      </div>
-    `;
-    return wrapper;
-  };
-
   const escapeHtml = (text) => {
     const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML.replace(/\n/g, "<br/>");
   };
 
-  const exportPDF = async () => {
-    const wrapper = buildExportWrapper();
-    if (!wrapper) return;
+  // Build the title + input section to inject before the result content
+  const buildHeaderHTML = () => {
+    const inputSection = inputContent
+      ? `
+        <div class="export-input-section" style="background: #f5f3ff; border-left: 4px solid #6c3ce0; padding: 14px 18px; margin: 12px 0;">
+          <h3 style="margin-top: 0; color: #6c3ce0;">📥 ${inputLabel}</h3>
+          <div style="background: #ffffff; padding: 10px 14px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #444; border: 1px solid #d4c5fb; border-radius: 4px;">
+            ${escapeHtml(inputContent)}
+          </div>
+        </div>
+      `
+      : "";
 
-    // Append off-screen so html2canvas can render it
-    wrapper.style.position = "absolute";
-    wrapper.style.left = "-9999px";
-    wrapper.style.top = "0";
-    wrapper.style.width = "800px";
-    document.body.appendChild(wrapper);
+    return `
+      <div class="export-header-injected" style="margin-bottom: 16px;">
+        <h1 style="color: #6c3ce0; border-bottom: 3px solid #6c3ce0; padding-bottom: 8px; margin-bottom: 16px;">
+          ${title}
+        </h1>
+        ${inputSection}
+        <h3 style="color: #6c3ce0; margin-top: 16px;">✨ Memory Aid Result</h3>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 8px 0 14px 0;"/>
+      </div>
+    `;
+  };
+
+  // Inject header (title + input) into the target ref temporarily
+  // Returns the injected div so we can remove it after export
+  const injectHeader = () => {
+    if (!targetRef?.current) return null;
+    const headerDiv = document.createElement("div");
+    headerDiv.innerHTML = buildHeaderHTML();
+    const headerNode = headerDiv.firstElementChild;
+    targetRef.current.insertBefore(headerNode, targetRef.current.firstChild);
+    return headerNode;
+  };
+
+  const removeHeader = (headerNode) => {
+    if (headerNode && headerNode.parentNode) {
+      headerNode.parentNode.removeChild(headerNode);
+    }
+  };
+
+  const exportPDF = async () => {
+    if (!targetRef?.current) return;
+    const resultHTML = targetRef.current.innerHTML;
+    if (!resultHTML || resultHTML.trim().length === 0) {
+      alert("Kuch content nahi hai export karne ke liye!");
+      return;
+    }
+
+    const headerNode = injectHeader();
 
     const opt = {
       margin: [10, 10, 10, 10],
@@ -82,20 +85,40 @@ export default function ExportButtons({
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
     try {
-      await html2pdf().set(opt).from(wrapper).save();
+      await html2pdf().set(opt).from(targetRef.current).save();
     } catch (err) {
       alert("PDF export failed: " + err.message);
     } finally {
-      document.body.removeChild(wrapper);
+      removeHeader(headerNode);
     }
   };
 
   const exportDOCX = () => {
-    const wrapper = buildExportWrapper();
-    if (!wrapper) return;
+    if (!targetRef?.current) return;
+    const resultHTML = targetRef.current.innerHTML;
+    if (!resultHTML || resultHTML.trim().length === 0) {
+      alert("Kuch content nahi hai export karne ke liye!");
+      return;
+    }
 
     try {
-      const inner = wrapper.innerHTML;
+      const inputSection = inputContent
+        ? `
+          <div class="export-input-section">
+            <h2>📥 ${inputLabel}</h2>
+            <div class="input-content">${escapeHtml(inputContent)}</div>
+          </div>
+          <hr/>
+        `
+        : "";
+
+      const fullBody = `
+        <h1>${title}</h1>
+        <hr/>
+        ${inputSection}
+        <h2>✨ Memory Aid Result</h2>
+        ${resultHTML}
+      `;
 
       const styles = `
         body {
@@ -210,7 +233,7 @@ export default function ExportButtons({
 <style>${styles}</style>
 </head>
 <body>
-${inner}
+${fullBody}
 </body>
 </html>`;
 
