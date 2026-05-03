@@ -94,7 +94,13 @@ export default function PegSystem() {
       {result && (
         <div className="result-box">
           <h3>Aapki Peg Associations:</h3>
-          <ExportButtons targetRef={resultRef} filename="peg-system-associations" title="Peg System — Associations" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="peg-system-associations"
+            title="Peg System — Associations"
+            inputLabel="Items to Peg (1-10)"
+            inputContent={input}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>

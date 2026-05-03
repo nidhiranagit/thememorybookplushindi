@@ -1,9 +1,78 @@
 import html2pdf from "html2pdf.js";
 import { saveAs } from "file-saver";
 
-export default function ExportButtons({ targetRef, filename = "memory-aid", title = "Memory Aid" }) {
+/**
+ * ExportButtons - Export result + input as PDF or Word document
+ *
+ * Props:
+ * - targetRef: ref to result content div
+ * - filename: base filename (no extension)
+ * - title: document title
+ * - inputLabel: label for the user's input section (e.g. "Aapka Input", "Items", "Number")
+ * - inputContent: the actual input string/HTML to show in the export
+ */
+export default function ExportButtons({
+  targetRef,
+  filename = "memory-aid",
+  title = "Memory Aid",
+  inputLabel = "Aapka Input",
+  inputContent = "",
+}) {
+  // Build a temporary wrapper that contains: title + input section + result content
+  // Used by both PDF and DOCX exports
+  const buildExportWrapper = () => {
+    if (!targetRef?.current) return null;
+    const resultHTML = targetRef.current.innerHTML;
+    if (!resultHTML || resultHTML.trim().length === 0) {
+      alert("Kuch content nahi hai export karne ke liye!");
+      return null;
+    }
+
+    const inputSection = inputContent
+      ? `
+        <div class="export-input-section">
+          <h2>📥 ${inputLabel}</h2>
+          <div class="input-content">${escapeHtml(inputContent)}</div>
+        </div>
+        <hr/>
+      `
+      : "";
+
+    const wrapper = document.createElement("div");
+    wrapper.style.fontFamily =
+      "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    wrapper.style.padding = "20px";
+    wrapper.style.background = "#ffffff";
+    wrapper.innerHTML = `
+      <h1 style="color: #6c3ce0; border-bottom: 3px solid #6c3ce0; padding-bottom: 8px; margin-bottom: 16px;">
+        ${title}
+      </h1>
+      ${inputSection}
+      <div class="export-result-section">
+        <h2>✨ Memory Aid Result</h2>
+        ${resultHTML}
+      </div>
+    `;
+    return wrapper;
+  };
+
+  const escapeHtml = (text) => {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML.replace(/\n/g, "<br/>");
+  };
+
   const exportPDF = async () => {
-    if (!targetRef?.current) return;
+    const wrapper = buildExportWrapper();
+    if (!wrapper) return;
+
+    // Append off-screen so html2canvas can render it
+    wrapper.style.position = "absolute";
+    wrapper.style.left = "-9999px";
+    wrapper.style.top = "0";
+    wrapper.style.width = "800px";
+    document.body.appendChild(wrapper);
+
     const opt = {
       margin: [10, 10, 10, 10],
       filename: `${filename}.pdf`,
@@ -13,22 +82,20 @@ export default function ExportButtons({ targetRef, filename = "memory-aid", titl
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
     try {
-      await html2pdf().set(opt).from(targetRef.current).save();
+      await html2pdf().set(opt).from(wrapper).save();
     } catch (err) {
       alert("PDF export failed: " + err.message);
+    } finally {
+      document.body.removeChild(wrapper);
     }
   };
 
-  // Word-compatible HTML approach (most reliable in browsers)
-  // Word opens .doc files with HTML content perfectly
   const exportDOCX = () => {
-    if (!targetRef?.current) return;
+    const wrapper = buildExportWrapper();
+    if (!wrapper) return;
+
     try {
-      const inner = targetRef.current.innerHTML;
-      if (!inner || inner.trim().length === 0) {
-        alert("Kuch content nahi hai export karne ke liye!");
-        return;
-      }
+      const inner = wrapper.innerHTML;
 
       const styles = `
         body {
@@ -44,12 +111,31 @@ export default function ExportButtons({ targetRef, filename = "memory-aid", titl
           margin-top: 18px;
           margin-bottom: 8px;
         }
-        h1 { font-size: 22pt; }
+        h1 { font-size: 22pt; border-bottom: 3px solid #6c3ce0; padding-bottom: 6px; }
         h2 { font-size: 18pt; }
         h3 { font-size: 14pt; }
         h4 { font-size: 12pt; font-weight: bold; }
         strong { color: #111827; font-weight: bold; }
         em { font-style: italic; }
+        .export-input-section {
+          background: #f5f3ff;
+          border-left: 4px solid #6c3ce0;
+          padding: 14px 18px;
+          margin: 12px 0;
+        }
+        .export-input-section h2 {
+          margin-top: 0;
+          font-size: 14pt;
+          color: #6c3ce0;
+        }
+        .input-content {
+          background: #ffffff;
+          padding: 10px 14px;
+          font-family: 'Consolas', 'Courier New', monospace;
+          font-size: 11pt;
+          color: #444;
+          border: 1px solid #d4c5fb;
+        }
         table {
           border-collapse: collapse;
           width: 100%;
@@ -102,7 +188,6 @@ export default function ExportButtons({ targetRef, filename = "memory-aid", titl
         p { margin: 8px 0; }
       `;
 
-      // Word-compatible HTML with proper namespaces
       const html = `<!DOCTYPE html>
 <html xmlns:o='urn:schemas-microsoft-com:office:office'
       xmlns:w='urn:schemas-microsoft-com:office:word'
@@ -125,13 +210,10 @@ export default function ExportButtons({ targetRef, filename = "memory-aid", titl
 <style>${styles}</style>
 </head>
 <body>
-<h1>${title}</h1>
-<hr/>
 ${inner}
 </body>
 </html>`;
 
-      // BOM + UTF-8 ensures Hindi/Devanagari renders correctly
       const blob = new Blob(["\ufeff", html], {
         type: "application/msword;charset=utf-8",
       });

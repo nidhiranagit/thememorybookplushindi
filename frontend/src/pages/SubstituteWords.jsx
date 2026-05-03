@@ -87,7 +87,13 @@ export default function SubstituteWords() {
       {result && (
         <div className="result-box">
           <h3>Aapke Substitute Words:</h3>
-          <ExportButtons targetRef={resultRef} filename="substitute-words" title="Substitute Words" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="substitute-words"
+            title="Substitute Words"
+            inputLabel="Words to Memorize"
+            inputContent={input}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>

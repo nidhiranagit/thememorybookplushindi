@@ -102,7 +102,13 @@ export default function PhoneticAlphabet() {
       {result && (
         <div className="result-box">
           <h3>Aapke Phonetic Words:</h3>
-          <ExportButtons targetRef={resultRef} filename="phonetic-words" title="Phonetic Alphabet — Memory Words" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="phonetic-words"
+            title="Phonetic Alphabet — Memory Words"
+            inputLabel="Number to Memorize"
+            inputContent={number}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>

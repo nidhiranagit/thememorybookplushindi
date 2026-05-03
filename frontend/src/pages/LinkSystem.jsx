@@ -80,7 +80,13 @@ export default function LinkSystem() {
       {result && (
         <div className="result-box">
           <h3>Aapki Memory Story:</h3>
-          <ExportButtons targetRef={resultRef} filename="link-system-story" title="Link System — Memory Story" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="link-system-story"
+            title="Link System — Memory Story"
+            inputLabel="Items to Memorize"
+            inputContent={input}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>

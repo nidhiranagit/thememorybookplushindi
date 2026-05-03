@@ -124,7 +124,13 @@ export default function LociMethod() {
       {result && (
         <div className="result-box">
           <h3>Aapka Memory Palace Walkthrough:</h3>
-          <ExportButtons targetRef={resultRef} filename="memory-palace-walkthrough" title="Memory Palace Walkthrough" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="memory-palace-walkthrough"
+            title="Memory Palace Walkthrough"
+            inputLabel="Memory Palace + Items"
+            inputContent={`Place: ${selectedPlace}\n\nItems: ${input}`}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>

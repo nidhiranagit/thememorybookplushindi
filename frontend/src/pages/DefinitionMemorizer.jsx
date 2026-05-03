@@ -101,7 +101,13 @@ export default function DefinitionMemorizer() {
       {result && (
         <div className="result-box">
           <h3>Aapka Memory Aid (MOVIE Method):</h3>
-          <ExportButtons targetRef={resultRef} filename="movie-method-memory-aid" title="MOVIE Method Memory Aid" />
+          <ExportButtons
+            targetRef={resultRef}
+            filename="movie-method-memory-aid"
+            title="MOVIE Method Memory Aid"
+            inputLabel="Definition / Paragraph to Memorize"
+            inputContent={input}
+          />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
           </div>
