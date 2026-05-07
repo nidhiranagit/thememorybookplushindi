@@ -557,3 +557,218 @@
   .theory-section, .tool-section { padding: 20px 18px; }
   .peg-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ===== TYPING KEYBOARD COMPONENT ===== */
+.typing-keyboard {
+  background: linear-gradient(135deg, rgba(108,60,224,0.05), rgba(139,92,246,0.08));
+  border: 2px solid rgba(108, 60, 224, 0.2);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  margin-top: 20px;
+  user-select: none;
+}
+
+.tk-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.tk-header h4 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin: 0 0 6px 0;
+  letter-spacing: 0.5px;
+}
+.tk-progress-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* Typed display row */
+.tk-typed-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 22px;
+  padding: 14px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  min-height: 60px;
+}
+.tk-letter {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 1.6rem;
+  width: 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.tk-letter.pending {
+  color: var(--border);
+  background: transparent;
+  border: 1px dashed var(--border);
+}
+.tk-letter.active {
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(108,60,224,0.4);
+  animation: tk-pulse 0.6s ease;
+}
+.tk-letter.typed {
+  color: var(--primary);
+  background: rgba(108,60,224,0.1);
+  border: 1px solid rgba(108,60,224,0.3);
+}
+@keyframes tk-pulse {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1.15); }
+}
+
+/* Keyboard layout */
+.tk-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.tk-row {
+  display: flex;
+  gap: 5px;
+}
+.tk-row-1 { padding-left: 18px; }  /* offset for ASDF row */
+.tk-row-2 { padding-left: 36px; }  /* offset for ZXCV row */
+
+.tk-key {
+  width: 42px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 0%, #e8e6f0 100%);
+  border: 1px solid #c4bfd0;
+  border-radius: 6px;
+  font-family: -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+  box-shadow: 0 2px 0 #c4bfd0, 0 3px 6px rgba(0,0,0,0.08);
+  transition: all 0.15s ease;
+}
+
+.tk-key-active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(2px) scale(1.1);
+  box-shadow:
+    0 0 0 4px rgba(108,60,224,0.25),
+    0 0 24px rgba(108,60,224,0.6),
+    inset 0 -1px 0 rgba(255,255,255,0.2);
+  animation: tk-key-press 0.4s ease;
+  z-index: 10;
+}
+@keyframes tk-key-press {
+  0% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(3px) scale(1.15); }
+  100% { transform: translateY(2px) scale(1.1); }
+}
+
+/* Controls */
+.tk-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+.tk-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tk-btn-play {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+.tk-btn-pause {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+.tk-btn-reset {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.tk-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.tk-speed-controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border);
+}
+.tk-speed-btn {
+  font-family: -apple-system, sans-serif;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tk-speed-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.tk-speed-btn:hover:not(.active) {
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Mobile keyboard adjustments */
+@media (max-width: 600px) {
+  .tk-key {
+    width: 30px;
+    height: 38px;
+    font-size: 0.8rem;
+  }
+  .tk-row { gap: 3px; }
+  .tk-row-1 { padding-left: 14px; }
+  .tk-row-2 { padding-left: 28px; }
+  .tk-letter {
+    font-size: 1.2rem;
+    width: 30px;
+    height: 38px;
+  }
+  .tk-controls { flex-direction: column; gap: 6px; }
+  .tk-speed-controls {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+}

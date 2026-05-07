@@ -3,6 +3,7 @@ import ChapterLayout from "../components/ChapterLayout";
 import LoadingSpinner from "../components/LoadingSpinner";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ExportButtons from "../components/ExportButtons";
+import TypingKeyboard from "../components/TypingKeyboard";
 
 const API = "http://localhost:8001";
 
@@ -264,6 +265,7 @@ export default function PurnaMethod() {
           />
           <div ref={resultRef}>
             <MarkdownRenderer content={result} />
+            <TypingKeyboard word={input} />
           </div>
         </div>
       )}
