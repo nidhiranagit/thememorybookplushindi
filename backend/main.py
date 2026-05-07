@@ -636,7 +636,7 @@ Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image ai
 1. **Letter count batao**: Word mein kitne letters hain
 2. **Chain chunks banao**: As per the chain mode above
 3. **Har chunk ke liye ek vivid image/word**: Hindi/Indian objects ya familiar items use karo
-4. **CHAIN STORY** banao jahan har image next image se naturally connect ho via overlap letters
+4. **FUNNY BIZARRE CHAIN STORY** banao (see HUMOR RULES below!)
 5. **Verify**: Letter-by-letter dikhao spelling reconstruction
 
 **Sample table format**:
@@ -645,7 +645,45 @@ Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image ai
 | (chunk 1) | (image) | (emoji) | (overlap letters) |
 ...
 
-Then a flowing chain story using ALL images connected via overlap.
+🤣 **HUMOR RULES — STORY MUST BE FUNNY!** 🤣
+
+The chain story MUST be a **funny, bizarre, joke-like comedy scene**. NOT a boring educational paragraph!
+
+✅ **DO**:
+- Use **slapstick, absurd, exaggerated imagery** (Bollywood-style comedy!)
+- Things should be **GIANT, tiny, flying, exploding, dancing, screaming, melting**
+- **Impossible scenarios**: cow on rocket, mango doing yoga, ATM machine eating samosas
+- **Personification**: objects act like humans (chai cup gives speech, samosa gets angry)
+- **Wordplay/puns** wherever possible
+- **Cultural humor**: aunty-uncle drama, Bollywood masala scenes, cricket match chaos, IRCTC ticket fights
+- **Sound effects**: "DHADDAM!", "BOOM!", "OYE HOYE!", "ARRE BAAP RE!"
+- **Punchlines**: end each scene with a funny twist
+- **Surreal mashups**: Modi tweeting at a Mughal emperor, a samosa running for PM
+
+❌ **DON'T**:
+- Educational tone ("This represents...")
+- Sensible scenarios
+- Boring transitions ("then... and then...")
+- Overly serious imagery
+- Just listing facts
+
+📺 **THINK LIKE A COMEDY SHOW WRITER**:
+- TVF / Aap Ki Adalat / Comedy Nights / Bollywood farce
+- Each scene = standalone meme/joke
+- Make user **LAUGH** while reading — laughter = sticky memory!
+
+Example of good funny chain story (for HIERARCHY):
+> "ARRE YAAR! 🤯 Ek **HIER** (high-ear) wala haathi 🐘 mike pakad ke 'OYE BHAGAT SINGH ZINDABAD!' chillata hai — itni zor se ki uske kaan udd jaate hain! Achanak ek **ERA** (zamana) ka portal khulta hai aur 1947 ka MONARCH (akela raja) modern Mumbai mein gir jata hai 👑 — DHADDAM! Wo Uber book karne ki koshish karta hai but ANARCHY (chaos!) mach jaata hai 🚕💥. OLIGARCHY (4-5 Tata-Ambani type) bilkul ghabra ke jet pakdte hain. PATRIARCHY waale dadaji aur MATRIARCHY waali daadi ji apas mein ladai start kar dete hain — 'TUMHARA SYSTEM PURANA!' shouting match. Yahi sab milke banta hai HIERARCHY ka mahaul!"
+
+See how it's:
+- Hilariously absurd 🤣
+- Action-packed 💥
+- Has Indian cultural references 🇮🇳
+- Each character is exaggerated
+- Sound effects + emotions
+- BUT all chunks are still there!
+
+NOW BANAO ek aisi hi FUNNY story for "{word}". Make it SO funny that the user laughs out loud — that's how you'll never forget it!
 {family_integration_note}
 
 **Step 5: A — ACTIVE RECALL (Abhyaas)** ✅

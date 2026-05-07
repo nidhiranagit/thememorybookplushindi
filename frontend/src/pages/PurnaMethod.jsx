@@ -169,23 +169,30 @@ export default function PurnaMethod() {
       </div>
 
       <div className="example-box">
-        <h3>🌳 Integrated Family Story Example (HIERARCHY):</h3>
+        <h3>🤣 FUNNY Story Example (HIERARCHY) — Comedy + Family + Chain!</h3>
         <p>
-          <strong>Old way</strong>: Chain story for HIERARCHY + separate table of family words
-          <br />
-          <strong>NEW way</strong>: Family words ARE the chain story!
+          <strong>Story</strong> ab ekdum <em>Bollywood comedy style</em> mein hoti hai —
+          slapstick, absurd, exaggerated imagery jo tumhe hasaye!
         </p>
         <p>
-          <em>Sample story:</em>
+          <em>Sample funny story:</em>
           <br />
-          "HIERARCHY palace mein parade chal rahi hai 🏛️. Sabse upar <strong>MONARCH</strong> (mono=one king 👑)
-          baitha hai apne <strong>HIER</strong>-vache singhasan par. Achanak <strong>ANARCHY</strong>
-          (an=no rule, chaos! 💥) phaila — palace ka root toot raha! <strong>OLIGARCHY</strong>
-          (oligo=few rulers 💼) waale council bhag rahe. <strong>PATRIARCHY</strong> (patri=father rule 👨)
-          aur <strong>MATRIARCHY</strong> (matri=mother rule 👩) ke debate phir se shuru!"
+          "ARRE YAAR! 🤯 Ek <strong>HIER</strong> (high-ear) wala haathi 🐘 mike pakad ke
+          'OYE BHAGAT SINGH ZINDABAD!' chillata hai — itni zor se ki uske kaan udd jaate hain!
+          Achanak ek <strong>ERA</strong> ka portal khulta hai aur 1947 ka <strong>MONARCH</strong>
+          (akela raja 👑) modern Mumbai mein gir jata hai — DHADDAM! 💥 Wo Uber book karne ki
+          koshish karta hai but <strong>ANARCHY</strong> (chaos!) mach jaata hai 🚕💥.
+          <strong>OLIGARCHY</strong> (4-5 Tata-Ambani type 💼) bilkul ghabra ke jet pakdte hain.
+          <strong>PATRIARCHY</strong> waale dadaji aur <strong>MATRIARCHY</strong> waali daadi ji
+          apas mein ladai start kar dete hain — 'TUMHARA SYSTEM PURANA!' shouting match. Yahi sab
+          milke banta hai HIERARCHY ka mahaul!"
         </p>
         <p>
-          <strong>Result</strong>: Story replay = 6 words yaad! HIERARCHY + 5 family members! 🎯
+          <strong>Why funny stories stick</strong>: Research shows <em>laughter + bizarre imagery
+          = strongest memory encoding</em>. Aapka brain comedy never forgets! 🧠😂
+        </p>
+        <p>
+          <strong>Result</strong>: Hasi-hasi mein 6 words yaad ho gaye! HIERARCHY + 5 family! 🎯
         </p>
       </div>
     </>
