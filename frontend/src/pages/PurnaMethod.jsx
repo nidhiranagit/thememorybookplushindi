@@ -59,9 +59,30 @@ export default function PurnaMethod() {
           <li><strong>P — Picture (Tasveer)</strong> 🎬 — Visual image trigger + meaning</li>
           <li><strong>U — Utter (Awaaz)</strong> 🎵 — Sound rhyme + phonetic chunks</li>
           <li><strong>R — Roots (Mool)</strong> 🌳 — Etymology + Hindi equivalent</li>
-          <li><strong>N — Naam-Vaakya</strong> 🔒 — Acrostic sentence (locks every letter)</li>
+          <li><strong>N — Naam-Vaakya (Overlap-Chain)</strong> 🔗 — Letter-PAIR chain (har pair shares 1 letter with next!)</li>
           <li><strong>A — Active Recall</strong> ✅ — Two-way test (retrieval + spelling)</li>
         </ol>
+      </div>
+
+      <div className="example-box">
+        <h3>🔗 NEW: Overlap-Chain Acrostic (Step 4 enhanced!)</h3>
+        <p>
+          Old way: 9 separate words for HIERARCHY (cognitive overload!)
+        </p>
+        <p>
+          <strong>New way:</strong> Letter-PAIRS that overlap and chain naturally:
+        </p>
+        <p>
+          <strong>HIERARCHY</strong> → HI → IE → ER → RA → AR → RC → CH → HY
+        </p>
+        <p>
+          Each pair shares a letter with the next (the <strong>bridge</strong> letter):
+          <br />🙋 HI (Hi greeting) → ❄️ IE (Ice) → 🕰️ ER (Era) → 👑 RA (Raja) →
+          🏹 AR (Arrow) → 🌈 RC (Arc) → ☕ CH (Chai) → 🐺 HY (Hyena)
+        </p>
+        <p>
+          <strong>Result:</strong> Half the cognitive load + auto-chain via overlap = perfect for long words!
+        </p>
       </div>
 
       <div className="example-box">
@@ -76,12 +97,13 @@ export default function PurnaMethod() {
       </div>
 
       <div className="example-box">
-        <h3>Example: HIERARCHY</h3>
+        <h3>Full Example: HIERARCHY</h3>
         <p>
           <strong>P (Picture):</strong> Pyramid 🔺 with king at top, servants at bottom<br />
           <strong>U (Utter):</strong> "HIGH-er-ar-key" — rhymes with monarchy<br />
           <strong>R (Roots):</strong> HIER (Greek: sacred) + ARCHY (Greek: rule) = "Padanukram" (Hindi)<br />
-          <strong>N (Naam-Vaakya):</strong> "Hari Is Eating Roti And Rice; Chai-Haldi Yummy!" → H-I-E-R-A-R-C-H-Y ✅<br />
+          <strong>N (Overlap-Chain):</strong> 🙋 HI → ❄️ IE → 🕰️ ER → 👑 RA → 🏹 AR → 🌈 RC → ☕ CH → 🐺 HY<br />
+          <em>Story:</em> "Tum HI bolte ho ek ICE ko jo ERA se aaya hai, jahan RAJA ARROW chalata hai jo ARC mein ghoomte hue CHAI tak pahunchti hai aur HYENA peeta hai!"<br />
           <strong>A (Active):</strong> Test both ways — meaning→word AND word→spelling
         </p>
       </div>

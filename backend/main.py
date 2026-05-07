@@ -550,11 +550,47 @@ Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image ai
 - Hindi/Hinglish equivalent batao (Hindi mein ye concept kya kehte hain)
 - Similar words bhi mention karo jo yahi root use karte hain (pattern recognition)
 
-**Step 4: N — NAAM-VAAKYA (Acrostic Sentence)** 🔒
-Word ke har letter ke liye ek word use karke ek sentence banao. **Indian/Hindi names aur places use karo** (Hari, Sita, Priya, Mumbai, Delhi, etc.).
-- Letter count: kitne letters hain word mein, batao
-- Acrostic sentence likho
-- Phir verify karke dikhao: H-I-E-R-A-R-C-H-Y format mein letters break karke confirm karo
+**Step 4: N — NAAM-VAAKYA (OVERLAP-CHAIN Acrostic)** 🔒🔗
+
+**NEW IMPROVED TECHNIQUE — Overlap Chain Method:**
+
+Instead of 1 word per letter (which is exhausting for long words), use **letter-pair chains** where consecutive pairs share an overlap letter:
+
+For example, HIERARCHY (H-I-E-R-A-R-C-H-Y) becomes:
+- HI → IE → ER → RA → AR → RC → CH → HY (8 pairs, each sharing 1 letter)
+- Each pair = ONE vivid image
+- Overlapping letter = the BRIDGE/LINK between images
+
+Process:
+1. **Letter count batao**: Word mein kitne letters hain
+2. **Letter pairs banao**: Consecutive overlapping pairs (HI, IE, ER, RA...)
+3. **Har pair ke liye ek vivid image/word**: Hindi/Indian objects ya familiar items use karo
+4. **CHAIN STORY** banao jahan har image next image se naturally connect ho via overlap
+5. **Verify**: Letter-by-letter dikhao spelling reconstruction
+
+**Sample format**:
+```
+| Pair | Image/Word | Visual |
+|------|-----------|--------|
+| HI   | Hi (greeting) | 🙋 |
+| IE   | Ice | ❄️ |
+| ER   | Era (time) | 🕰️ |
+...
+```
+
+Then a flowing chain story using ALL images connected via overlap.
+
+**WHY THIS WORKS BETTER**:
+- Half the cognitive load (8 images vs 9 words for HIERARCHY)
+- Overlap letters = automatic memory bridges
+- Chain naturally flows
+- More like Link System (proven memory technique)
+
+**EDGE CASES**:
+- For odd letter words (3, 5, 7 letters), still use overlap-pair approach
+- For very short words (3-4 letters), use letter-by-letter or single image
+- Adjust chunk size if needed (some 3-letter chunks if a pair is awkward)
+- ALWAYS verify by reading first letter of each pair = original spelling
 
 **Step 5: A — ACTIVE RECALL (Abhyaas)** ✅
 Two-way test instructions do:
