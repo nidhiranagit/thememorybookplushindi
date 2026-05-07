@@ -43,6 +43,13 @@ const chapters = [
     description: "Paragraph-style technical definitions yaad karo! Loss functions, optimizers, theory — sab character-based stories mein convert.",
     path: "/definition-memorizer",
   },
+  {
+    number: 7,
+    title: "PURNA Method (Complete Word Mastery)",
+    icon: "\u{1FAB7}",
+    description: "Tip of tongue + spelling problems — DONO solve! Etymology + Acrostic se EXACT spelling lock + 5 trigger pathways from meaning to word.",
+    path: "/purna-method",
+  },
 ];
 
 export default function Home() {
@@ -54,7 +61,7 @@ export default function Home() {
           Harry Lorayne & Jerry Lucas ki classic guide par based — Hindi Edition
         </p>
         <p className="tagline">
-          6 powerful memory techniques seekho AI-powered practice tools ke saath
+          7 powerful memory techniques seekho AI-powered practice tools ke saath
         </p>
       </header>
 

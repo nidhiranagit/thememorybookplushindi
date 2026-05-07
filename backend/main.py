@@ -266,6 +266,9 @@ class LociWalkthroughRequest(BaseModel):
 class DefinitionMemorizeRequest(BaseModel):
     definition: str
 
+class PurnaMethodRequest(BaseModel):
+    word: str
+
 
 # --- Romanized Hinglish System Instruction ---
 HINGLISH_INSTRUCTION = """IMPORTANT: Respond in Romanized Hinglish — Hindi written in English/Roman script mixed with English words naturally, exactly like how Hindi speakers type on WhatsApp or chat. DO NOT use Devanagari script at all. Write everything in English letters only.
@@ -494,6 +497,82 @@ IMPORTANT FORMATTING RULES:
 Romanized Hinglish mein — NO Devanagari! Make it engaging, fun, aur educational."""
     result = ask_claude(prompt)
     return {"memory_aid": result or fallback_definition_memorize(req.definition)}
+
+
+def fallback_purna_method(word):
+    return f"""**PURNA Method — {word.upper()}**
+
+**P — Picture (Tasveer):** Iss word ka ek vivid image socho jo iska meaning bhi dikhata ho.
+
+**U — Utter (Awaaz):** Word ko syllables mein todo aur sound chunks pehchano.
+
+**R — Roots (Mool):** Etymology aur Hindi equivalent dhundo.
+
+**N — Naam-Vaakya (Acrostic):** Har letter ke liye ek word use karke sentence banao — first letter exact spelling deti hai.
+
+**A — Active Recall:** Cover-write-check method se test karo dono — meaning aur spelling.
+
+**Tip:** AI enable karo for full auto-generated PURNA breakdown!
+"""
+
+
+@app.post("/api/purna-method")
+def purna_method(req: PurnaMethodRequest):
+    if not req.word or len(req.word.strip()) < 2:
+        raise HTTPException(400, "Ek proper word daalo")
+    word = req.word.strip()
+    prompt = f"""{HINGLISH_INSTRUCTION}
+
+Tu ek memory coach hai jo "PURNA Method" sikhata hai — ek powerful technique jo ek hi system mein DOVEIN problems solve karti hai:
+1. **Word Retrieval** (meaning yaad hai but word atak gaya — "tip of tongue")
+2. **Exact Spelling** (word yaad hai but letters confuse ho jaate hain)
+
+User ko ye word master karna hai: **"{word}"**
+
+PURNA = Punjabi/Hindi/Sanskrit word matlab "Complete". 5 steps ka method hai jahan har step DOUBLE DUTY karta hai (retrieval + spelling dono ke liye useful).
+
+Apply PURNA Method to "{word}" — generate complete breakdown:
+
+**Step 1: P — PICTURE (Tasveer)** 🎬
+Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image aisi ho ki:
+- Stuck hone par image yaad aaye → word trigger ho
+- Image mein letters/structure ka hint bhi mile
+
+**Step 2: U — UTTER (Awaaz)** 🎵
+- Word ki pronunciation likho (syllables ke saath)
+- Kis word/concept ke saath rhyme karta hai (English ya Hindi)
+- Sound chunks identify karo (jo Step 3 mein use honge)
+
+**Step 3: R — ROOTS (Mool)** 🌳
+**SABSE IMPORTANT STEP** — etymology dhundo:
+- Word ki real origin (Latin/Greek/Sanskrit/Arabic, jo bhi ho)
+- Word ko EXACT morphemes/roots mein todo (NOT phonetic guess)
+- Hindi/Hinglish equivalent batao (Hindi mein ye concept kya kehte hain)
+- Similar words bhi mention karo jo yahi root use karte hain (pattern recognition)
+
+**Step 4: N — NAAM-VAAKYA (Acrostic Sentence)** 🔒
+Word ke har letter ke liye ek word use karke ek sentence banao. **Indian/Hindi names aur places use karo** (Hari, Sita, Priya, Mumbai, Delhi, etc.).
+- Letter count: kitne letters hain word mein, batao
+- Acrostic sentence likho
+- Phir verify karke dikhao: H-I-E-R-A-R-C-H-Y format mein letters break karke confirm karo
+
+**Step 5: A — ACTIVE RECALL (Abhyaas)** ✅
+Two-way test instructions do:
+- **Retrieval Test**: Ek question batao jo meaning se word tak laaye
+- **Spelling Test**: Cover-write-check approach
+- Spaced repetition schedule batao (10min, 1ghante, 1din, 1week)
+
+**Last Section: Quick Recall Triggers**
+Ek summary table do jisme har step ka trigger ho — jab atak jao, ye triggers cycle through karo.
+
+IMPORTANT FORMATTING:
+- Proper Markdown tables use karo with pipes
+- Headings me emojis daalo
+- Hinglish mein likho — NO Devanagari!
+- Engaging, fun tone rakho
+- Final mein confidence builder line do (jaise "Ab tum ye word kabhi nahi bhulna!")"""
+    result = ask_claude(prompt)
+    return {"purna_breakdown": result or fallback_purna_method(word)}
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ import PhoneticAlphabet from "./pages/PhoneticAlphabet";
 import SubstituteWords from "./pages/SubstituteWords";
 import LociMethod from "./pages/LociMethod";
 import DefinitionMemorizer from "./pages/DefinitionMemorizer";
+import PurnaMethod from "./pages/PurnaMethod";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/substitute-words" element={<SubstituteWords />} />
         <Route path="/loci-method" element={<LociMethod />} />
         <Route path="/definition-memorizer" element={<DefinitionMemorizer />} />
+        <Route path="/purna-method" element={<PurnaMethod />} />
       </Routes>
     </div>
   );
