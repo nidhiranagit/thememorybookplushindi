@@ -156,13 +156,37 @@ export default function PurnaMethod() {
             </ul>
           </li>
           <li>
-            <strong>🌳 Word Family Multiplier</strong> — Learn 1 word, unlock 5-7 related words FREE!
+            <strong>🌳 Word Family — INTEGRATED into Story!</strong> ⭐⭐⭐
             <br />
-            HIERARCHY → also unlocks MONARCHY, ANARCHY, OLIGARCHY, PATRIARCHY, MATRIARCHY (same -ARCHY root from Greek!)
+            Family words are now <strong>woven INTO the chain story</strong> as characters/events!
             <br />
-            <em>Pattern recognition = exponential learning!</em>
+            Example: HIERARCHY story includes MONARCHY (one king), ANARCHY (chaos), OLIGARCHY (few rulers),
+            PATRIARCHY (father), MATRIARCHY (mother) — all in ONE flowing narrative.
+            <br />
+            <em>Result: Replay the story → 6 words yaad ek saath! Pattern + narrative = sticky!</em>
           </li>
         </ul>
+      </div>
+
+      <div className="example-box">
+        <h3>🌳 Integrated Family Story Example (HIERARCHY):</h3>
+        <p>
+          <strong>Old way</strong>: Chain story for HIERARCHY + separate table of family words
+          <br />
+          <strong>NEW way</strong>: Family words ARE the chain story!
+        </p>
+        <p>
+          <em>Sample story:</em>
+          <br />
+          "HIERARCHY palace mein parade chal rahi hai 🏛️. Sabse upar <strong>MONARCH</strong> (mono=one king 👑)
+          baitha hai apne <strong>HIER</strong>-vache singhasan par. Achanak <strong>ANARCHY</strong>
+          (an=no rule, chaos! 💥) phaila — palace ka root toot raha! <strong>OLIGARCHY</strong>
+          (oligo=few rulers 💼) waale council bhag rahe. <strong>PATRIARCHY</strong> (patri=father rule 👨)
+          aur <strong>MATRIARCHY</strong> (matri=mother rule 👩) ke debate phir se shuru!"
+        </p>
+        <p>
+          <strong>Result</strong>: Story replay = 6 words yaad! HIERARCHY + 5 family members! 🎯
+        </p>
       </div>
     </>
   );

@@ -553,30 +553,50 @@ def purna_method(req: PurnaMethodRequest):
     chain_instruction = CHAIN_MODE_INSTRUCTIONS[chain_mode]
 
     family_section = ""
+    family_integration_note = ""
     if req.include_family:
+        family_integration_note = """
+
+🌳 **CRITICAL: INTEGRATED FAMILY STORY** 🌳
+
+Step 4 ki chain story mein 5-7 FAMILY WORDS bhi WEAVE karo (jo same root share karte hain).
+- Family words = sister/brother words jo same etymology root share karte hain
+- Har family word ko story mein ek CHARACTER ya EVENT banake daalo
+- Brackets mein quick meaning hint do (e.g., "MONARCH (one king)")
+- Family word ka pehla chunk main word ke chain chunk se match honi chahiye agar possible ho
+- Ek hi story = main word YAAD + 5-7 family words YAAD!
+
+Example for HIERARCHY (chain: HIER → ERAR → ARCH → RCHY) with -ARCHY family:
+
+❌ BAD (separate, boring):
+"HIER mein ERAR aaya, ARCH ke andar RCHY..."
+[Family table separately listed]
+
+✅ GOOD (integrated, sticky):
+"HIERARCHY palace mein parade chal rahi hai 🏛️. Sabse upar **MONARCH** (mono=one king 👑) baitha hai apne **HIER**-vache singhasan par. Achanak **ANARCHY** (an=no rule, chaos! 💥) phaila — RCHY palace ka root toot raha! **OLIGARCHY** (oligo=few rulers 💼) waale council bhag rahe. **PATRIARCHY** (patri=father rule 👨) aur **MATRIARCHY** (matri=mother rule 👩) ke debate phir se shuru ho gaye. Yahi to HIERARCHY hai!"
+
+In good version:
+- Main chain chunks visible: HIER, ERAR, ARCH, RCHY
+- Family words integrated as characters: MONARCH, ANARCHY, OLIGARCHY, PATRIARCHY, MATRIARCHY
+- Each family word has meaning hint in brackets
+- ONE story, MULTIPLE words remembered!"""
+
         family_section = """
 
-**BONUS Step: 🌳 WORD FAMILY MULTIPLIER**
+**BONUS Step: 🌳 WORD FAMILY SUMMARY TABLE**
 
-Ek hi root family ke 5-7 RELATED words list karo jo same etymology share karte hain. Format:
+Ek summary table do — jo family words story mein use kiye unhe organize karke dikhao:
 
-| Word | Root Pattern | Hindi Meaning | Quick Image |
-|------|--------------|---------------|-------------|
-| (related word 1) | (shared root) | (Hindi equivalent) | (1-line visual) |
-| (related word 2) | (shared root) | (Hindi equivalent) | (1-line visual) |
+| Word | Root Pattern | Meaning (Hindi) | Quick Image |
+|------|--------------|-----------------|-------------|
+| (main word) | (root) | (Hindi) | (visual) |
+| (family word 1) | (shared root) | (Hindi) | (visual) |
+| (family word 2) | (shared root) | (Hindi) | (visual) |
 ...
 
-For example, HIERARCHY → -ARCHY family:
-- MONARCHY (mono=one) → ek raja ka raj → 👑 ek king
-- ANARCHY (an=without) → bina raj ke → 💥 chaos
-- OLIGARCHY (oligo=few) → kuch logon ka raj → 💼 small group
-- PATRIARCHY (patri=father) → pita ka raj → 👨 father-led
-- MATRIARCHY (matri=mother) → maa ka raj → 👩 mother-led
-- PLUTOCRACY (plouto=wealth) — bonus same theme
+**Why this is powerful**: Story se 5-7 words ek saath yaad ho jaate hain! Pattern recognition = exponential learning.
 
-**Why this is powerful**: Ek PURNA breakdown = 5-7 words yaad! Pattern recognition = exponential learning. Aaj HIERARCHY seekha to MONARCHY/ANARCHY automatically samajh aaye!
-
-End with a tip: "Ye family ek saath review karo — single root master karne se sab aa jaate hain!"
+End with a tip: "Story replay karo aur har family word ko notice karo — ek story = pure family yaad!"
 """
 
     prompt = f"""{HINGLISH_INSTRUCTION}
@@ -626,6 +646,7 @@ Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image ai
 ...
 
 Then a flowing chain story using ALL images connected via overlap.
+{family_integration_note}
 
 **Step 5: A — ACTIVE RECALL (Abhyaas)** ✅
 Two-way test instructions do:
