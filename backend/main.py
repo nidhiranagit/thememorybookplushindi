@@ -268,6 +268,8 @@ class DefinitionMemorizeRequest(BaseModel):
 
 class PurnaMethodRequest(BaseModel):
     word: str
+    chain_mode: str = "bridge"  # "quick" | "bridge" | "strong"
+    include_family: bool = True
 
 
 # --- Romanized Hinglish System Instruction ---
@@ -516,11 +518,67 @@ def fallback_purna_method(word):
 """
 
 
+CHAIN_MODE_INSTRUCTIONS = {
+    "quick": """**CHAIN MODE: QUICK (Light overlap)**
+- Chunk size: 2 letters per chunk
+- Overlap: 1 letter (last char of one = first char of next)
+- Example for HIERARCHY (9 letters): HI → IE → ER → RA → AR → RC → CH → HY (8 pairs)
+- Best for: Short words, quick learning
+- Each pair = 1 vivid image, overlap letter = bridge""",
+
+    "bridge": """**CHAIN MODE: BRIDGE (Medium overlap — RECOMMENDED)**
+- Chunk size: 3 letters per chunk
+- Overlap: 2 letters (last 2 chars of one = first 2 chars of next)
+- Example for HIERARCHY (9 letters): HIE → IER → ERA → RAR → ARC → RCH → CHY (7 trios)
+- OR fewer chunks with bigger jumps: HIE → ERA → ARC → CHY (4 chunks, 1-letter overlap)
+- Best for: Medium words (6-10 letters)
+- Stronger bridges between images = better chain memory""",
+
+    "strong": """**CHAIN MODE: STRONG (Maximum overlap — for tough words)**
+- Chunk size: 4 letters per chunk
+- Overlap: 2 letters (last 2 chars of one = first 2 chars of next)
+- Example for HIERARCHY (9 letters): HIER → ERAR → ARCH → RCHY (4 quads)
+- OR with 3-letter overlap: HIER → IERA → ERAR → RARC → ARCH → RCHY (6 quads, very dense)
+- Best for: Long, tough words (10+ letters)
+- Maximum overlap = strongest chain bridges = unbreakable sequence""",
+}
+
+
 @app.post("/api/purna-method")
 def purna_method(req: PurnaMethodRequest):
     if not req.word or len(req.word.strip()) < 2:
         raise HTTPException(400, "Ek proper word daalo")
     word = req.word.strip()
+    chain_mode = req.chain_mode if req.chain_mode in CHAIN_MODE_INSTRUCTIONS else "bridge"
+    chain_instruction = CHAIN_MODE_INSTRUCTIONS[chain_mode]
+
+    family_section = ""
+    if req.include_family:
+        family_section = """
+
+**BONUS Step: 🌳 WORD FAMILY MULTIPLIER**
+
+Ek hi root family ke 5-7 RELATED words list karo jo same etymology share karte hain. Format:
+
+| Word | Root Pattern | Hindi Meaning | Quick Image |
+|------|--------------|---------------|-------------|
+| (related word 1) | (shared root) | (Hindi equivalent) | (1-line visual) |
+| (related word 2) | (shared root) | (Hindi equivalent) | (1-line visual) |
+...
+
+For example, HIERARCHY → -ARCHY family:
+- MONARCHY (mono=one) → ek raja ka raj → 👑 ek king
+- ANARCHY (an=without) → bina raj ke → 💥 chaos
+- OLIGARCHY (oligo=few) → kuch logon ka raj → 💼 small group
+- PATRIARCHY (patri=father) → pita ka raj → 👨 father-led
+- MATRIARCHY (matri=mother) → maa ka raj → 👩 mother-led
+- PLUTOCRACY (plouto=wealth) — bonus same theme
+
+**Why this is powerful**: Ek PURNA breakdown = 5-7 words yaad! Pattern recognition = exponential learning. Aaj HIERARCHY seekha to MONARCHY/ANARCHY automatically samajh aaye!
+
+End with a tip: "Ye family ek saath review karo — single root master karne se sab aa jaate hain!"
+"""
+
     prompt = f"""{HINGLISH_INSTRUCTION}
 
 Tu ek memory coach hai jo "PURNA Method" sikhata hai — ek powerful technique jo ek hi system mein DOVEIN problems solve karti hai:
@@ -552,52 +610,29 @@ Ek vivid Hindi/Indian visual image banao jo word ka MEANING dikhata ho. Image ai
 
 **Step 4: N — NAAM-VAAKYA (OVERLAP-CHAIN Acrostic)** 🔒🔗
 
-**NEW IMPROVED TECHNIQUE — Overlap Chain Method:**
+{chain_instruction}
 
-Instead of 1 word per letter (which is exhausting for long words), use **letter-pair chains** where consecutive pairs share an overlap letter:
-
-For example, HIERARCHY (H-I-E-R-A-R-C-H-Y) becomes:
-- HI → IE → ER → RA → AR → RC → CH → HY (8 pairs, each sharing 1 letter)
-- Each pair = ONE vivid image
-- Overlapping letter = the BRIDGE/LINK between images
-
-Process:
+**Process for Step 4**:
 1. **Letter count batao**: Word mein kitne letters hain
-2. **Letter pairs banao**: Consecutive overlapping pairs (HI, IE, ER, RA...)
-3. **Har pair ke liye ek vivid image/word**: Hindi/Indian objects ya familiar items use karo
-4. **CHAIN STORY** banao jahan har image next image se naturally connect ho via overlap
+2. **Chain chunks banao**: As per the chain mode above
+3. **Har chunk ke liye ek vivid image/word**: Hindi/Indian objects ya familiar items use karo
+4. **CHAIN STORY** banao jahan har image next image se naturally connect ho via overlap letters
 5. **Verify**: Letter-by-letter dikhao spelling reconstruction
 
-**Sample format**:
-```
-| Pair | Image/Word | Visual |
-|------|-----------|--------|
-| HI   | Hi (greeting) | 🙋 |
-| IE   | Ice | ❄️ |
-| ER   | Era (time) | 🕰️ |
+**Sample table format**:
+| Chunk | Image/Word | Visual | Overlap with next |
+|-------|-----------|--------|-------------------|
+| (chunk 1) | (image) | (emoji) | (overlap letters) |
 ...
-```
 
 Then a flowing chain story using ALL images connected via overlap.
-
-**WHY THIS WORKS BETTER**:
-- Half the cognitive load (8 images vs 9 words for HIERARCHY)
-- Overlap letters = automatic memory bridges
-- Chain naturally flows
-- More like Link System (proven memory technique)
-
-**EDGE CASES**:
-- For odd letter words (3, 5, 7 letters), still use overlap-pair approach
-- For very short words (3-4 letters), use letter-by-letter or single image
-- Adjust chunk size if needed (some 3-letter chunks if a pair is awkward)
-- ALWAYS verify by reading first letter of each pair = original spelling
 
 **Step 5: A — ACTIVE RECALL (Abhyaas)** ✅
 Two-way test instructions do:
 - **Retrieval Test**: Ek question batao jo meaning se word tak laaye
 - **Spelling Test**: Cover-write-check approach
 - Spaced repetition schedule batao (10min, 1ghante, 1din, 1week)
-
+{family_section}
 **Last Section: Quick Recall Triggers**
 Ek summary table do jisme har step ka trigger ho — jab atak jao, ye triggers cycle through karo.
 

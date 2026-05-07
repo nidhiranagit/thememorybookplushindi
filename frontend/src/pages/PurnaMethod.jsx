@@ -6,8 +6,31 @@ import ExportButtons from "../components/ExportButtons";
 
 const API = "http://localhost:8001";
 
+const CHAIN_MODES = [
+  {
+    value: "quick",
+    label: "Quick (Light)",
+    desc: "2 chars/chunk, 1 overlap — best for short words",
+    example: "HI→IE→ER→RA",
+  },
+  {
+    value: "bridge",
+    label: "Bridge (Medium) ⭐",
+    desc: "3 chars/chunk, 2 overlap — recommended default",
+    example: "HIE→IER→ERA",
+  },
+  {
+    value: "strong",
+    label: "Strong (Max)",
+    desc: "4 chars/chunk, 2-3 overlap — best for long/tough words",
+    example: "HIER→ERAR→ARCH",
+  },
+];
+
 export default function PurnaMethod() {
   const [input, setInput] = useState("");
+  const [chainMode, setChainMode] = useState("bridge");
+  const [includeFamily, setIncludeFamily] = useState(true);
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const resultRef = useRef(null);
@@ -23,7 +46,11 @@ export default function PurnaMethod() {
       const res = await fetch(`${API}/api/purna-method`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ word: input.trim() }),
+        body: JSON.stringify({
+          word: input.trim(),
+          chain_mode: chainMode,
+          include_family: includeFamily,
+        }),
       });
       const data = await res.json();
       setResult(data.purna_breakdown);
@@ -116,6 +143,27 @@ export default function PurnaMethod() {
           <strong> acrostic</strong> (every letter locked) — <strong>EXACT</strong> spelling guaranteed!
         </p>
       </div>
+
+      <div className="example-box">
+        <h3>🆕 NEW Features (just added!):</h3>
+        <ul>
+          <li>
+            <strong>🔗 Chain Strength Control</strong> — Choose how much overlap between chunks!
+            <ul>
+              <li><strong>Quick</strong>: 2-char chunks (HI→IE→ER) — fast for short words</li>
+              <li><strong>Bridge ⭐</strong>: 3-char chunks (HIE→IER→ERA) — recommended</li>
+              <li><strong>Strong</strong>: 4-char chunks (HIER→ERAR→ARCH) — for long/tough words, max chain power!</li>
+            </ul>
+          </li>
+          <li>
+            <strong>🌳 Word Family Multiplier</strong> — Learn 1 word, unlock 5-7 related words FREE!
+            <br />
+            HIERARCHY → also unlocks MONARCHY, ANARCHY, OLIGARCHY, PATRIARCHY, MATRIARCHY (same -ARCHY root from Greek!)
+            <br />
+            <em>Pattern recognition = exponential learning!</em>
+          </li>
+        </ul>
+      </div>
     </>
   );
 
@@ -135,6 +183,37 @@ export default function PurnaMethod() {
           placeholder="jaise: hierarchy, serendipity, procrastination, benediction"
           maxLength={50}
         />
+
+        <label>🔗 Chain Strength chuno (overlap level):</label>
+        <div className="place-selector">
+          {CHAIN_MODES.map((mode) => (
+            <button
+              type="button"
+              key={mode.value}
+              className={`place-btn ${chainMode === mode.value ? "active" : ""}`}
+              onClick={() => setChainMode(mode.value)}
+              title={mode.desc}
+            >
+              {mode.label}
+            </button>
+          ))}
+        </div>
+        <p style={{ fontSize: "0.85rem", color: "var(--text-light)", marginTop: "-4px" }}>
+          {CHAIN_MODES.find((m) => m.value === chainMode)?.desc}
+          <br />
+          <strong>Example:</strong> {CHAIN_MODES.find((m) => m.value === chainMode)?.example}
+        </p>
+
+        <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={includeFamily}
+            onChange={(e) => setIncludeFamily(e.target.checked)}
+            style={{ width: "auto", padding: 0, margin: 0 }}
+          />
+          🌳 Include Word Family Multiplier (5-7 related words FREE!)
+        </label>
+
         <button type="submit" disabled={loading}>
           {loading ? "PURNA bana raha hu..." : "PURNA Method Apply Karo"}
         </button>
